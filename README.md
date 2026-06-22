@@ -4,9 +4,9 @@
 
 <br/>
 
-<a href="https://synergiax.web.app"><img src="https://img.shields.io/badge/🌐_Visit_Live_Site-synergiax.web.app-c0c1ff?style=for-the-badge&labelColor=0a0a14" alt="Live site"/></a>
+<a href="https://synergiax-b9b76.web.app"><img src="https://img.shields.io/badge/🌐_Visit_Live_Site-synergiax-b9b76.web.app-c0c1ff?style=for-the-badge&labelColor=0a0a14" alt="Live site"/></a>
 &nbsp;
-<a href="https://synergiax.web.app/#project"><img src="https://img.shields.io/badge/✦_Start_a_Project-Get_a_Quote-ffffff?style=for-the-badge&labelColor=0a0a14" alt="Start a project"/></a>
+<a href="https://synergiax-b9b76.web.app/#project"><img src="https://img.shields.io/badge/✦_Start_a_Project-Get_a_Quote-ffffff?style=for-the-badge&labelColor=0a0a14" alt="Start a project"/></a>
 
 <br/><br/>
 
@@ -28,7 +28,7 @@ SynergiaX is a boutique web-design studio that builds **premium websites for loc
 
 We believe a small local business should be able to have a website that feels as polished as a national brand — without the agency price tag or the months of waiting.
 
-> **This repository is the source of our own marketing website**, [synergiax.web.app](https://synergiax.web.app) — open-sourced so anyone can see the craft that goes into our work.
+> **This repository is the source of our own marketing website**, [synergiax-b9b76.web.app](https://synergiax-b9b76.web.app) — open-sourced so anyone can see the craft that goes into our work.
 
 ---
 
@@ -116,7 +116,7 @@ A fast, lightweight site with no heavy frameworks — just clean, hand-crafted c
 
 **Ready for a website your business deserves?**
 
-<a href="https://synergiax.web.app/#project"><img src="https://img.shields.io/badge/✦_Start_Your_Project-c0c1ff?style=for-the-badge&labelColor=0a0a14"/></a>
+<a href="https://synergiax-b9b76.web.app/#project"><img src="https://img.shields.io/badge/✦_Start_Your_Project-c0c1ff?style=for-the-badge&labelColor=0a0a14"/></a>
 
 📧 hello@synergiax.in &nbsp;·&nbsp; 📸 [@synergiax](https://www.instagram.com) &nbsp;·&nbsp; 💼 [LinkedIn](https://linkedin.com)
 
