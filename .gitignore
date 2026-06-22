@@ -1,0 +1,10 @@
+api/node_modules/
+node_modules/
+firebase-debug.log
+.firebase/
+*.log
+
+# Firebase service-account credentials (NEVER commit)
+*adminsdk*.json
+serviceAccountKey.json
+.runtimeconfig.json

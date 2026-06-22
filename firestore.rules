@@ -1,0 +1,25 @@
+rules_version = '2';
+
+// SynergiaX Firestore security rules.
+//
+// Leads are written ONLY by the trusted Cloud Function (api/index.js), which
+// uses the Admin SDK and therefore BYPASSES these rules. So for the public
+// client we deny all direct access to the `leads` collection — nobody can
+// read other businesses' submissions or write spam directly to Firestore.
+//
+// (If we later switch to client-side writes — "Path B" — change the leads
+// `create` rule to allow validated creates and keep read/update/delete denied.)
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /leads/{leadId} {
+      allow read, update, delete: if false;
+      allow create: if false; // created via Admin SDK (Cloud Function) only
+    }
+
+    // Default deny for everything else.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

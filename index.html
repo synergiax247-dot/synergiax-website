@@ -1,0 +1,1330 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SynergiaX | Premium Websites for Local Business</title>
+<meta name="description" content="SynergiaX designs and builds premium, high-converting websites for local businesses — gyms, salons, clinics, cafes, restaurants, and boutiques."/>
+<link rel="canonical" href="https://synergiax.web.app/"/>
+
+<!-- Open Graph (Facebook, LinkedIn, etc.) -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="SynergiaX"/>
+<meta property="og:url" content="https://synergiax.web.app/"/>
+<meta property="og:title" content="SynergiaX | Premium Websites for Local Business"/>
+<meta property="og:description" content="SynergiaX designs and builds premium, high-converting websites for local businesses — gyms, salons, clinics, cafes, restaurants, and boutiques."/>
+<meta property="og:image" content="https://synergiax.web.app/og-image.jpg"/>
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="SynergiaX | Premium Websites for Local Business"/>
+<meta name="twitter:description" content="SynergiaX designs and builds premium, high-converting websites for local businesses — gyms, salons, clinics, cafes, restaurants, and boutiques."/>
+<meta name="twitter:image" content="https://synergiax.web.app/og-image.jpg"/>
+
+<!-- Speed up webfont delivery (CDN sources/versions unchanged) -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode:"class",
+  theme:{extend:{
+    colors:{"on-surface":"#e2e2e2","on-surface-variant":"#c4c7c8","surface":"#131313","background":"#131313","void":"#050505","primary":"#ffffff","secondary":"#c0c1ff","error":"#ffb4ab"},
+    fontFamily:{
+      serif:["Instrument Serif","Georgia","Cambria","Times New Roman","Times","serif"],
+      sans:["Inter","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue","Arial","sans-serif"]
+    },
+    borderRadius:{"card":"16px","control":"8px"}
+  }}
+}
+</script>
+<style>
+/* ── Design tokens (DESIGN.md / design.md) ──────────────────────────────────── */
+:root{
+  /* Surfaces */
+  --sx-obsidian:#131313;          /* base surface outside the hero backdrop (Req 3.3) */
+  --sx-void:#050505;              /* deepest void background */
+  --sx-on-surface:#e2e2e2;        /* primary body text */
+  --sx-on-surface-variant:#c4c7c8;
+  /* Interactive accent — used ONLY for highlight/hover/focus/active states (Req 3.4) */
+  --sx-accent:#c0c1ff;
+  /* Glass tokens (Req 3.5) */
+  --sx-glass-fill:rgba(255,255,255,0.06);     /* <= 8% white fill */
+  --sx-glass-border:rgba(255,255,255,0.12);   /* 1px <= 15% white */
+  --sx-glass-blur:24px;                        /* >= 20px backdrop blur */
+  /* Corner radii (Req 3.6) */
+  --sx-radius-card:16px;          /* primary containers / cards */
+  --sx-radius-control:8px;        /* buttons / inputs */
+  /* Fallback-matched font stacks (Req 3.2, 7.4, 7.5) */
+  --sx-font-serif:"Instrument Serif",Georgia,Cambria,"Times New Roman",Times,serif;
+  --sx-font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+/* Webfonts arrive via the Google Fonts CDN with display=swap, so the system
+   fallback stacks above paint headline/body text within ~100ms and never block
+   interactivity even if the webfonts are slow or fail (Req 7.4, 7.5, 3.2). */
+
+*{box-sizing:border-box}
+body{background:var(--sx-void);color:var(--sx-on-surface);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-family:var(--sx-font-sans)}
+.glass{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);position:relative}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.1) 0%,transparent 60%);pointer-events:none;z-index:0}
+.ticker-wrap{overflow:hidden;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.ticker-track{display:flex;gap:12px;animation:ticker 24s linear infinite;white-space:nowrap;width:max-content}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:none}
+.btn-primary{background:#fff;color:#000;font-weight:700;border-radius:9999px;padding:14px 32px;display:inline-flex;align-items:center;gap:8px;transition:background .2s,transform .15s;cursor:pointer;border:none;font-size:14px;letter-spacing:.02em}
+.btn-primary:hover{background:#d0d0d0;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.06);color:#fff;font-weight:600;border-radius:9999px;padding:14px 32px;border:1px solid rgba(255,255,255,0.14);display:inline-flex;align-items:center;gap:8px;transition:background .2s;cursor:pointer;font-size:14px}
+.btn-ghost:hover{background:rgba(255,255,255,0.1)}
+.stat-num{font-family:"Instrument Serif",serif;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1;color:#fff}
+.feature-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:24px;padding:32px;transition:all .4s cubic-bezier(.23,1,.32,1)}
+.feature-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);transform:translateY(-4px)}
+.pricing-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:28px;padding:40px;transition:transform .3s}
+.pricing-card:hover{transform:translateY(-6px)}
+.pricing-card.featured{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.22)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-answer.open{max-height:300px;padding-bottom:20px}
+.input-field{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:14px 20px;color:#fff;width:100%;outline:none;font-family:Inter,sans-serif;font-size:15px;transition:border-color .2s,background .2s}
+.input-field:focus{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.08)}
+.input-field::placeholder{color:rgba(255,255,255,0.22)}
+.persona-card{border-radius:20px;overflow:hidden;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all .4s cubic-bezier(.23,1,.32,1);cursor:default}
+.persona-card:hover{border-color:rgba(255,255,255,0.2);transform:scale(1.02)}
+.testimonial-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:24px;padding:32px}
+.nav-link{font-size:12px;letter-spacing:.06em;font-weight:600;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .2s;text-decoration:none}
+.nav-link:hover{color:#fff}
+.section-label{font-size:11px;letter-spacing:.1em;font-weight:600;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.msym{font-family:"Material Symbols Outlined";font-style:normal;font-size:22px;line-height:1;vertical-align:middle}
+.check-item{display:flex;align-items:flex-start;gap:12px;color:rgba(255,255,255,.7);font-size:15px}
+.check-item .msym{color:#fff;font-size:20px;margin-top:1px;flex-shrink:0}
+.glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(192,193,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* ── Liquid Glass surface token (Req 3.5) ───────────────────────────────────── */
+/* backdrop blur >= 20px, white fill <= 8%, 1px border <= 15% white opacity */
+.sx-glass{
+  background:var(--sx-glass-fill);
+  backdrop-filter:blur(var(--sx-glass-blur));
+  -webkit-backdrop-filter:blur(var(--sx-glass-blur));
+  border:1px solid var(--sx-glass-border);
+  border-radius:var(--sx-radius-card);
+  position:relative;
+}
+.sx-glass::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.10) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+/* ── Corner-radius helpers (Req 3.6) ────────────────────────────────────────── */
+.sx-radius-card{border-radius:var(--sx-radius-card)}      /* 16px containers/cards */
+.sx-radius-control{border-radius:var(--sx-radius-control)}/* 8px buttons/inputs */
+
+/* ── Interactive purple accent — highlight/hover/focus/active only (Req 3.4) ── */
+.sx-accent-link{color:inherit;transition:color .2s}
+.sx-accent-link:hover,.sx-accent-link:focus-visible,.sx-accent-link:active{color:var(--sx-accent)}
+.sx-accent-border:hover,.sx-accent-border:focus-visible,.sx-accent-border:active{border-color:var(--sx-accent)}
+/* Visible keyboard focus ring (>=3:1 against adjacent glass) (Req 2.8, 8.3) */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid var(--sx-accent);outline-offset:2px}
+
+/* ── Floating editorial navigation (Req 2.1, 2.2, 2.5, 2.6, 2.8, 8.3) ───────── */
+/* Visually-hidden utility: keeps an accessible name in the a11y tree while the
+   visible editorial term carries the stylized branding (Req 2.2). */
+.sx-visually-hidden{
+  position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* Fixed glass bar with a CONSTANT top offset so it stays visible while the
+   Visitor scrolls (Req 2.1). Pill-shaped, centered, capped width. */
+.sx-nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:50;
+  width:calc(100% - 32px);max-width:1200px;
+  border-radius:9999px;
+  padding:10px 14px 10px 22px;
+}
+.sx-nav__inner{display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;z-index:1}
+.sx-nav__brand{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
+.sx-nav__brand-text{font-family:var(--sx-font-serif);font-size:22px;color:#fff;letter-spacing:-.02em;line-height:1}
+
+/* Editorial Nav_Label anchors — stylized terms with programmatic names (Req 2.2) */
+.sx-nav__links{display:flex;align-items:center;gap:32px}
+.sx-nav-label{
+  font-size:12px;letter-spacing:.16em;font-weight:600;text-transform:uppercase;
+  color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s;
+  border-radius:var(--sx-radius-control);padding:6px 4px;white-space:nowrap;
+}
+.sx-nav-label:hover,.sx-nav-label:focus-visible,.sx-nav-label:active{color:#fff}
+
+/* Persistent CTA — visible in EVERY navigation state (Req 2.5) */
+.sx-nav__cta{padding:10px 22px;font-size:13px;flex-shrink:0}
+
+/* Mobile collapse control — hidden on desktop, shown below 768px (Req 2.6) */
+.sx-nav__toggle{
+  display:none;align-items:center;justify-content:center;
+  width:42px;height:42px;border-radius:9999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  color:#fff;cursor:pointer;flex-shrink:0;
+}
+.sx-nav__toggle:hover{background:rgba(255,255,255,.1)}
+.sx-nav__toggle .msym{font-size:22px}
+
+/* Unavailable indicator — hidden by default; JS reveals it when a label's
+   target section is absent (Req 2.4). */
+.sx-nav__unavailable{
+  position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 10px);
+  margin:0;padding:8px 16px;border-radius:9999px;
+  background:rgba(19,19,19,.94);border:1px solid var(--sx-glass-border);
+  color:var(--sx-on-surface);font-size:12px;letter-spacing:.02em;white-space:nowrap;
+}
+.sx-nav__unavailable[hidden]{display:none}
+
+/* Nav-specific keyboard focus ring (>=3:1 against adjacent glass) (Req 2.8, 8.3) */
+.sx-nav-label:focus-visible,
+.sx-nav__brand:focus-visible,
+.sx-nav__cta:focus-visible,
+.sx-nav__toggle:focus-visible{outline:2px solid var(--sx-accent);outline-offset:3px}
+
+/* Below 768px the expanded labels are REPLACED by the collapsed control
+   (Req 2.6). The labels wrapper becomes a glass dropdown panel that the JS
+   (task 9.1) reveals by flipping [data-nav-toggle] aria-expanded or adding
+   .sx-nav__links--open; the persistent CTA + brand stay visible. */
+@media (max-width:767.98px){
+  .sx-nav{padding:10px 12px}
+  .sx-nav__links{
+    display:none;
+    position:absolute;top:calc(100% + 10px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:6px;
+    padding:14px;
+    background:var(--sx-glass-fill);
+    backdrop-filter:blur(var(--sx-glass-blur));
+    -webkit-backdrop-filter:blur(var(--sx-glass-blur));
+    border:1px solid var(--sx-glass-border);
+    border-radius:var(--sx-radius-card);
+  }
+  .sx-nav__inner:has([data-nav-toggle][aria-expanded="true"]) .sx-nav__links,
+  .sx-nav__links.sx-nav__links--open{display:flex}
+  .sx-nav-label{padding:10px 12px;border-radius:var(--sx-radius-control)}
+  .sx-nav__toggle{display:inline-flex}
+  .sx-nav__cta{padding:9px 16px}
+}
+
+/* ── Pricing section classes (consumed by SX.pricing.renderPackages) ────────── */
+.sx-pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start}
+.sx-pricing-card{padding:40px;border-radius:var(--sx-radius-card);transition:transform .3s}
+.sx-pricing-card:hover{transform:translateY(-6px)}
+.sx-pricing-card--featured{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18)}
+.sx-pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#fff;color:#000;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:4px 14px;border-radius:9999px}
+.sx-pricing-name{font-family:var(--sx-font-serif);font-size:24px;line-height:1.2;margin-bottom:8px;position:relative;z-index:1}
+.sx-pricing-price{font-family:var(--sx-font-serif);font-size:3rem;line-height:1;margin-bottom:24px;position:relative;z-index:1}
+.sx-pricing-inclusions{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
+.sx-pricing-inclusion{color:rgba(255,255,255,.7);font-size:15px;line-height:1.5}
+.sx-pricing-empty{padding:40px;text-align:center;border-radius:var(--sx-radius-card)}
+.sx-pricing-empty-message{color:rgba(255,255,255,.6);font-size:16px;line-height:1.7;margin:0;position:relative;z-index:1}
+
+/* ── Cinematic Hero — layered backdrop / scrim / glass content ──────────────── */
+/* Three stacked layers guarantee legible text whether or not the backdrop image
+   loads: (1) solid #050505 void fallback, (2) presentation-only full-bleed
+   background-image backdrop, (3) dark contrast scrim, (4) glass content above. */
+.sx-hero{
+  position:relative;
+  min-height:100svh;                 /* full viewport height (Req 1.1) */
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  overflow:hidden;
+  isolation:isolate;                 /* contain stacking context for layers */
+}
+@supports not (min-height:100svh){.sx-hero{min-height:100vh}} /* graceful fallback */
+
+/* Layer 1 — solid void fallback, always visible so text stays legible even if
+   the backdrop never loads (Req 1.6). */
+.sx-hero__fallback{position:absolute;inset:0;margin:0;z-index:0;background:var(--sx-void)}
+
+/* Layer 2 — presentation-only full-bleed backdrop. CSS background only (no alt /
+   text content), extends to all four viewport edges with 0 margin (Req 1.2),
+   and is excluded from the accessibility/indexable tree (Req 9.5). Task 11.2's
+   JS loader targets #hero-backdrop to swap in the optimized image; the gradient
+   placeholder below renders immediately even with no image file present. */
+.sx-hero__backdrop{
+  position:absolute;inset:0;margin:0;z-index:1;
+  background-position:center;background-size:cover;background-repeat:no-repeat;
+  background-image:
+    radial-gradient(60% 42% at 50% 6%, rgba(255,247,224,0.65) 0%, rgba(255,205,150,0.18) 24%, transparent 52%),
+    radial-gradient(120% 80% at 50% 16%, rgba(192,193,255,0.42) 0%, rgba(118,108,206,0.20) 30%, transparent 60%),
+    radial-gradient(140% 90% at 50% 120%, rgba(40,30,70,0.55) 0%, transparent 60%),
+    linear-gradient(180deg,#0a0a18 0%,#0b0a14 42%,#060510 72%,#050505 100%);
+  transition:opacity .8s ease;
+}
+
+/* Layer 3 — dark contrast scrim between backdrop and text. Guarantees >=4.5:1
+   text contrast regardless of backdrop pixels (Req 1.5, 1.6). */
+.sx-hero__scrim{
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(5,5,5,0.58) 0%,rgba(5,5,5,0.34) 34%,rgba(5,5,5,0.62) 72%,rgba(5,5,5,0.86) 100%);
+}
+
+/* Layer 4 — glass content layer; sits above backdrop + scrim. */
+.sx-hero__content{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%}
+
+/* ── Reduced-motion safety (Req 8.4, 8.5, 1.7) ──────────────────────────────── */
+/* Disable scroll-triggered + looping animations; pin revealed content to its
+   final visible position so nothing stays hidden or off-screen. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
+  }
+  .ticker-track{animation:none!important;transform:none!important}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+}
+</style>
+<style id="sx-enhance">
+/* ══════════════════════════════════════════════════════════════════════════
+ * VISUAL ENHANCEMENT LAYER (sx-cinematic.js + sx-fx.js)
+ * Cinematic portal hero, premium shadows, nav scroll-states, staggered reveals,
+ * parallax, mouse-trail, starfield. All motion gated by prefers-reduced-motion.
+ * ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Premium multi-layer button shadows (ai-designer-portfolio) ─────────────── */
+.btn-primary{
+  box-shadow:0 1px 2px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.22),
+             0 12px 26px rgba(0,0,0,.18),inset 0 1px 1px rgba(255,255,255,.7);
+  transition:background .2s,transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,.2),0 10px 22px rgba(0,0,0,.28),0 22px 48px rgba(0,0,0,.24),inset 0 1px 1px rgba(255,255,255,.8)}
+.btn-ghost{transition:background .2s,transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s}
+.btn-ghost:hover{transform:translateY(-2px);border-color:rgba(192,193,255,.35);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+
+/* ── Nav scroll-states (aerocore) ───────────────────────────────────────────── */
+#sx-nav{transition:transform .45s cubic-bezier(.16,1,.3,1),background .35s,backdrop-filter .35s,box-shadow .35s,padding .35s}
+#sx-nav.sx-nav--down{background:rgba(12,12,16,.72);box-shadow:0 10px 40px rgba(0,0,0,.45);padding-top:8px;padding-bottom:8px}
+#sx-nav.sx-nav--hidden{transform:translateX(-50%) translateY(-150%)}
+
+/* ── Staggered reveal (extends the base .reveal) ────────────────────────────── */
+.reveal{transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+.reveal[data-d="4"]{transition-delay:.32s}
+.reveal[data-d="5"]{transition-delay:.40s}
+.reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal-stagger.show > *{opacity:1;transform:none}
+.reveal-stagger.show > :nth-child(1){transition-delay:.05s}
+.reveal-stagger.show > :nth-child(2){transition-delay:.12s}
+.reveal-stagger.show > :nth-child(3){transition-delay:.19s}
+.reveal-stagger.show > :nth-child(4){transition-delay:.26s}
+.reveal-stagger.show > :nth-child(5){transition-delay:.33s}
+.reveal-stagger.show > :nth-child(6){transition-delay:.40s}
+
+/* hover micro-lift on cards already present — strengthen feature/persona/testimonial */
+.feature-card,.persona-card,.testimonial-card,.pricing-card{will-change:transform}
+.testimonial-card{transition:transform .4s cubic-bezier(.23,1,.32,1),border-color .4s,background .4s}
+.testimonial-card:hover{transform:translateY(-4px);border-color:rgba(192,193,255,.2);background:rgba(255,255,255,.05)}
+
+/* ══ CINEMATIC PORTAL HERO ══════════════════════════════════════════════════ */
+.sx-cine{position:relative;height:420vh}
+.sx-cine__viewport{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--sx-void);isolation:isolate}
+@supports (height:100svh){.sx-cine__viewport{height:100svh}}
+
+.sx-cine__fallback{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 30%,#0b0a16 0%,#070611 55%,#050505 100%);z-index:0}
+.sx-cine__world{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transform-origin:50% 50%;will-change:transform}
+
+/* arc slider sits behind the portal, revealed as the portal fades */
+.sx-cine__arc{position:absolute;left:0;right:0;bottom:0;height:62vh;z-index:9;opacity:0;pointer-events:none}
+.sx-arc__card{
+  position:absolute;left:50%;bottom:18vh;width:440px;height:520px;
+  border-radius:28px;padding:30px;
+  background:linear-gradient(160deg,rgba(28,28,38,.92),rgba(14,14,22,.92));
+  border:1px solid rgba(192,193,255,.18);
+  box-shadow:0 16px 50px rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;justify-content:space-between;
+  will-change:transform;
+}
+.sx-arc__card .msym{font-size:60px;color:#c0c1ff}
+.sx-arc__card-title{font-family:var(--sx-font-serif);font-size:34px;color:#fff;line-height:1.05}
+.sx-arc__card-desc{font-size:16px;color:rgba(255,255,255,.6);line-height:1.5;margin-top:8px}
+.sx-arc__card-num{position:absolute;top:20px;right:22px;font-size:14px;color:rgba(192,193,255,.65);letter-spacing:.12em}
+
+.sx-cine__portal{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:15;transform-origin:50% 42%;will-change:transform,opacity}
+.sx-cine__vignette{position:absolute;inset:0;z-index:16;pointer-events:none;
+  background:radial-gradient(120% 100% at 50% 42%,transparent 28%,rgba(5,5,5,.45) 72%,rgba(5,5,5,.92) 100%)}
+
+/* curtains — half-width edge-anchored panels; CSS animates the entrance sweep */
+.sx-cine__curtain{position:absolute;top:0;height:100%;width:52%;object-fit:cover;z-index:20;
+  transition:transform 1.8s cubic-bezier(.16,1,.3,1);will-change:transform}
+.sx-cine__curtain--l{left:0;object-position:right center;
+  box-shadow:14px 0 60px rgba(0,0,0,.6)}
+.sx-cine__curtain--r{right:0;object-position:left center;
+  box-shadow:-14px 0 60px rgba(0,0,0,.6)}
+.sx-cine--open .sx-cine__curtain--l{transform:translateX(-100%)}
+.sx-cine--open .sx-cine__curtain--r{transform:translateX(100%)}
+.sx-cine--instant .sx-cine__curtain{transition:none}
+
+/* scene 1 (headline / CTA / stats) — fades in via --ui, JS fades it out on scroll */
+.sx-cine__scene1{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;opacity:0;
+  transition:opacity .9s ease}
+.sx-cine--ui .sx-cine__scene1{opacity:1}
+.sx-cine__scene1 > *{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.sx-cine--ui .sx-cine__scene1 > *{opacity:1;transform:none}
+.sx-cine--ui .sx-cine__scene1 > :nth-child(2){transition-delay:.12s}
+.sx-cine--ui .sx-cine__scene1 > :nth-child(3){transition-delay:.24s}
+.sx-cine--ui .sx-cine__scene1 > :nth-child(4){transition-delay:.36s}
+.sx-cine--ui .sx-cine__scene1 > :nth-child(5){transition-delay:.48s}
+
+/* scene 2 (portal reveal heading) */
+.sx-cine__scene2{position:absolute;inset:0;z-index:30;display:flex;flex-direction:column;
+  align-items:center;text-align:center;padding-top:13vh;opacity:0;pointer-events:none}
+
+.sx-cine__cue{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:41;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.sx-cine__cue-ring{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);
+  display:flex;align-items:center;justify-content:center;animation:sx-bob 1.8s ease-in-out infinite}
+@keyframes sx-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* static fallback (reduced motion) — behaves like the original cinematic hero */
+.sx-cine--static{height:auto}
+.sx-cine--static .sx-cine__viewport{position:relative;height:auto;min-height:100svh;display:flex}
+.sx-cine--static .sx-cine__portal,
+.sx-cine--static .sx-cine__curtain,
+.sx-cine--static .sx-cine__arc,
+.sx-cine--static .sx-cine__scene2,
+.sx-cine--static .sx-cine__cue{display:none}
+.sx-cine--static .sx-cine__scene1{position:relative;opacity:1}
+.sx-cine--static .sx-cine__scene1 > *{opacity:1;transform:none}
+
+/* ── mouse-trail shards ─────────────────────────────────────────────────────── */
+[data-trail]{position:relative}
+.sx-trail-shard{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(192,193,255,.5),rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px);
+  pointer-events:none;transform:rotate(var(--rot,0));
+  animation:sx-shard 1s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes sx-shard{0%{opacity:.7;transform:rotate(var(--rot,0)) scale(.5)}100%{opacity:0;transform:rotate(var(--rot,0)) scale(1.1) translateY(-30px)}}
+
+/* ── starfield ──────────────────────────────────────────────────────────────── */
+[data-starfield]{position:relative;overflow:hidden}
+.sx-star{position:absolute;border-radius:50%;background:#fff;pointer-events:none;
+  animation:sx-twinkle 5s ease-in-out infinite}
+@keyframes sx-twinkle{0%,100%{opacity:.18}50%{opacity:.7}}
+
+@media (prefers-reduced-motion:reduce){
+  .sx-cine{height:auto!important}
+  .sx-cine__viewport{position:relative!important;height:auto!important;min-height:100svh}
+  .sx-cine__portal,.sx-cine__curtain,.sx-cine__arc,.sx-cine__scene2,.sx-cine__cue{display:none!important}
+  .sx-cine__scene1{position:relative!important;opacity:1!important}
+  .sx-cine__scene1 > *{opacity:1!important;transform:none!important}
+  .sx-star,.sx-trail-shard,.sx-cine__cue-ring{animation:none!important}
+  #sx-nav.sx-nav--hidden{transform:translateX(-50%)!important}
+}
+
+@media (max-width:767.98px){
+  .sx-arc__card{width:300px;height:360px;padding:22px;bottom:12vh}
+  .sx-arc__card .msym{font-size:42px}
+  .sx-arc__card-title{font-size:26px}
+  .sx-arc__card .msym{font-size:26px}
+  .sx-arc__card-title{font-size:17px}
+}
+
+/* starfield footer layering */
+#contact{position:relative;overflow:hidden}
+#contact > *{position:relative;z-index:1}
+#contact [data-starfield]{position:absolute;inset:0;z-index:0}
+
+/* project section starfield layering */
+#project [data-starfield]{position:absolute;inset:0;z-index:0}
+/* pricing: compress so the section fits one screen */
+#pricing .pricing-card{padding:26px 28px!important}
+#pricing [style*="font-size:3rem"]{font-size:2.3rem!important}
+#pricing [style*="margin-bottom:32px"]{margin-bottom:16px!important}
+#pricing [style*="margin-bottom:40px"]{margin-bottom:22px!important}
+#pricing .check-item{font-size:13.5px}
+#pricing [style*="gap:14px"]{gap:9px!important}
+@media (max-height:820px){#pricing{min-height:auto!important;padding:90px 24px!important}}
+/* gold-frame tilt should not clip its inner form */
+#formContainer{position:relative;z-index:1}
+
+/* global cursor glow (sx-fx initCursorGlow) */
+.sx-cursor-glow{position:fixed;top:0;left:0;width:480px;height:480px;margin:-240px 0 0 -240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,193,255,.13),rgba(192,193,255,.05) 38%,transparent 68%);
+  pointer-events:none;z-index:9999;mix-blend-mode:screen;opacity:0;transition:opacity .4s ease;will-change:transform}
+.sx-cursor-glow.is-on{opacity:1}
+@media (hover:none){.sx-cursor-glow{display:none}}
+@media (prefers-reduced-motion:reduce){.sx-cursor-glow{display:none!important}}
+
+/* ══ PASS-2 ENHANCEMENTS ══════════════════════════════════════════════════ */
+/* industries marquee */
+.sx-marquee-sec{position:relative;padding:60px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden}
+.sx-marquee-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;height:220px;background:radial-gradient(ellipse at center,rgba(192,193,255,.12),transparent 70%);pointer-events:none;filter:blur(8px)}
+.sx-marquee{position:relative;z-index:1;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.sx-marquee__track{display:flex;width:max-content;animation:sx-marquee 42s linear infinite}
+.sx-marquee:hover .sx-marquee__track{animation-play-state:paused}
+.sx-marquee__group{display:flex;gap:14px;padding-right:14px;flex-shrink:0}
+@keyframes sx-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sx-pill{display:inline-flex;align-items:center;gap:9px;white-space:nowrap;background:rgba(255,255,255,.04);border:1px solid rgba(192,193,255,.16);border-radius:9999px;padding:10px 22px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.66);transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s,color .3s}
+.sx-pill .msym{font-size:16px;color:rgba(192,193,255,.7)}
+.sx-pill:hover{transform:translateY(-3px);border-color:rgba(192,193,255,.5);box-shadow:0 6px 24px rgba(192,193,255,.20);color:#fff}
+/* cycling coloured outlines (outline only, subtle glow dot) */
+.sx-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor;opacity:.85;flex-shrink:0}
+.sx-pill:nth-child(6n+1){border-color:rgba(192,193,255,.55);color:rgba(199,200,255,.9)}
+.sx-pill:nth-child(6n+2){border-color:rgba(120,200,255,.55);color:rgba(176,224,255,.9)}
+.sx-pill:nth-child(6n+3){border-color:rgba(255,150,200,.55);color:rgba(255,196,224,.9)}
+.sx-pill:nth-child(6n+4){border-color:rgba(150,255,210,.55);color:rgba(190,245,224,.9)}
+.sx-pill:nth-child(6n+5){border-color:rgba(255,210,140,.55);color:rgba(255,228,178,.9)}
+.sx-pill:nth-child(6n){border-color:rgba(190,160,255,.55);color:rgba(214,196,255,.9)}
+.sx-pill .msym{color:inherit!important}
+
+/* golden animated frame + 3D tilt (process preview) */
+@property --sx-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.sx-gold-frame{position:relative;border-radius:26px;transition:transform .25s ease-out;transform-style:preserve-3d;will-change:transform}
+.sx-gold-frame__inner{position:relative;z-index:1}
+.sx-gold-frame::before{content:"";position:absolute;inset:-2px;border-radius:28px;padding:2px;
+  background:conic-gradient(from var(--sx-a),transparent 0deg,#f6d97c 55deg,#fff4c8 110deg,#caa53a 165deg,transparent 250deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  opacity:0;transition:opacity .45s ease;pointer-events:none;z-index:2}
+.sx-gold-frame::after{content:"";position:absolute;inset:-14px;border-radius:34px;background:radial-gradient(60% 60% at 50% 50%,rgba(246,217,124,.18),transparent 70%);opacity:0;transition:opacity .45s ease;pointer-events:none;z-index:0}
+.sx-gold-frame:hover::before,.sx-gold-frame.is-tilt::before{opacity:1;animation:sx-gold-spin 4s linear infinite}
+.sx-gold-frame:hover::after,.sx-gold-frame.is-tilt::after{opacity:1}
+@keyframes sx-gold-spin{to{--sx-a:360deg}}
+
+/* process metrics row */
+.sx-process-glow{position:absolute;top:20%;right:-5%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(192,193,255,.08),transparent 70%);pointer-events:none}
+.sx-process-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,.07)}
+.sx-metric{text-align:center}
+.sx-metric__num{font-family:var(--sx-font-serif);font-size:clamp(2.2rem,4vw,3.2rem);line-height:1;color:#fff}
+.sx-metric__label{margin-top:8px;font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,.45)}
+
+/* works hover caption */
+.sx-works-caption{text-align:center;margin-top:40px;min-height:96px;position:relative;z-index:1}
+.sx-works-caption__title{font-family:var(--sx-font-serif);font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;line-height:1.1;transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)}
+.sx-works-caption__desc{margin-top:8px;font-size:15px;color:rgba(255,255,255,.6);max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)}
+.sx-works-caption.is-swapping .sx-works-caption__title,
+.sx-works-caption.is-swapping .sx-works-caption__desc{opacity:0;transform:translateY(10px)}
+.persona-card{cursor:pointer}
+
+/* works grid responsive: 4 → 2 → 1 */
+@media (max-width:980px){[data-works-grid]{grid-template-columns:repeat(2,1fr)!important}}
+@media (max-width:560px){[data-works-grid]{grid-template-columns:1fr!important}}
+
+/* process metrics responsive */
+@media (max-width:760px){.sx-process-metrics{grid-template-columns:repeat(2,1fr);gap:28px 16px}}
+
+@media (prefers-reduced-motion:reduce){
+  .sx-marquee__track{animation:none!important}
+  .sx-gold-frame::before{animation:none!important}
+}
+
+/* ════ PASS 2 ENHANCEMENTS ════════════════════════════════════════════════ */
+
+/* ── Form: defeat Tailwind forms-plugin white bg on text/email/tel inputs ──── */
+#sx-lead-form .input-field,.sx-review-form .input-field{background:rgba(255,255,255,.05)!important;color:#fff!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:14px!important}
+.sx-review-form .input-field::placeholder{color:rgba(255,255,255,.32)!important}
+.faq-answer.open{max-height:460px}
+#sx-lead-form .input-field:focus{border-color:rgba(192,193,255,.5)!important;background:rgba(255,255,255,.08)!important;box-shadow:0 0 0 3px rgba(192,193,255,.12)}
+#sx-lead-form .input-field::placeholder{color:rgba(255,255,255,.32)!important}
+#sx-lead-form select.input-field option{background:#16161c;color:#fff}
+#sx-lead-form .input-field:-webkit-autofill,
+#sx-lead-form .input-field:-webkit-autofill:hover,
+#sx-lead-form .input-field:-webkit-autofill:focus{
+  -webkit-text-fill-color:#fff;-webkit-box-shadow:0 0 0 1000px rgba(20,20,26,.97) inset;caret-color:#fff}
+
+/* ── Scroll-snap: selected sections behave as full screens (desktop only) ──── */
+@media (min-width:768px) and (prefers-reduced-motion:no-preference){
+  html{scroll-snap-type:y proximity}
+  .sx-snap{scroll-snap-align:start;scroll-snap-stop:normal}
+}
+
+/* ── Ticker neon pills (subtle, cycling hues) ──────────────────────────────── */
+.ticker-track span{transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s,color .3s}
+.sx-ticker-neon span:hover{transform:translateY(-3px) scale(1.04)}
+.sx-ticker-neon span:nth-child(7n+1){border-color:rgba(192,193,255,.5)!important;box-shadow:0 0 16px rgba(192,193,255,.28);color:#e3e3ff!important}
+.sx-ticker-neon span:nth-child(7n+2){border-color:rgba(120,200,255,.45)!important;box-shadow:0 0 16px rgba(120,200,255,.24);color:#d6efff!important}
+.sx-ticker-neon span:nth-child(7n+3){border-color:rgba(255,150,200,.45)!important;box-shadow:0 0 16px rgba(255,150,200,.22);color:#ffdcec!important}
+.sx-ticker-neon span:nth-child(7n+4){border-color:rgba(150,255,210,.45)!important;box-shadow:0 0 16px rgba(150,255,210,.22);color:#daf7ee!important}
+.sx-ticker-neon span:nth-child(7n+5){border-color:rgba(255,210,140,.45)!important;box-shadow:0 0 16px rgba(255,210,140,.22);color:#ffeed0!important}
+.sx-ticker-neon span:nth-child(7n+6){border-color:rgba(180,160,255,.45)!important;box-shadow:0 0 16px rgba(180,160,255,.24);color:#e6dcff!important}
+.sx-ticker-neon span:nth-child(7n){border-color:rgba(140,230,255,.45)!important;box-shadow:0 0 16px rgba(140,230,255,.22);color:#d8f5ff!important}
+
+/* ── 3D tilt for cards ─────────────────────────────────────────────────────── */
+[data-tilt]{transform-style:preserve-3d;will-change:transform}
+[data-tilt] .tilt-inner{transform:translateZ(30px)}
+
+/* ── Who We Work With: hover-reveal themed background ───────────────────────── */
+#works{position:relative;isolation:isolate}
+.sx-works-bg{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100vw;height:100%;z-index:-1;overflow:hidden;pointer-events:none}
+.sx-works-bg__layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
+  transition:opacity 1s ease;transform:scale(1.06);animation:sx-kenburns 18s ease-in-out infinite alternate}
+.sx-works-bg__layer.is-active{opacity:.85}
+.sx-works-bg__scrim{position:absolute;inset:0;background:radial-gradient(120% 95% at 50% 32%,rgba(5,5,5,.18) 0%,rgba(5,5,5,.46) 60%,rgba(5,5,5,.78) 100%)}
+@keyframes sx-kenburns{0%{transform:scale(1.06)}100%{transform:scale(1.14)}}
+
+/* persona cards with image media */
+.persona-card{position:relative}
+.persona-card__media{height:170px;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.persona-card__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.12),rgba(5,5,5,.60));transition:background .4s}
+.persona-card__media .msym{position:absolute;left:18px;bottom:14px;z-index:1;font-size:36px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.persona-card__media-img{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1);transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+.persona-card:hover .persona-card__media-img{transform:scale(1.12)}
+.persona-card:hover .persona-card__media::after{background:linear-gradient(180deg,rgba(192,193,255,.12),rgba(5,5,5,.72))}
+.persona-card__body{padding:20px 22px 24px}
+
+/* ── Arc cards: image background + scrim ───────────────────────────────────── */
+.sx-arc__card{overflow:hidden}
+.sx-arc__card-img{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.sx-arc__card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,12,.45) 0%,rgba(8,8,12,.82) 100%)}
+.sx-arc__card > *:not(.sx-arc__card-img){position:relative;z-index:1}
+
+/* ── Review system ─────────────────────────────────────────────────────────── */
+.sx-reviews__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:40px}
+.sx-reviews__rating{display:flex;align-items:center;gap:12px}
+.sx-reviews__avg{font-family:var(--sx-font-serif);font-size:2.6rem;line-height:1;color:#fff}
+.sx-reviews__stars{color:#ffd479;font-size:18px;letter-spacing:2px}
+.sx-reviews__count{color:rgba(255,255,255,.45);font-size:13px}
+.sx-reviews__viewport{overflow:hidden;mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.sx-reviews__track{display:flex;gap:20px;transition:transform .7s cubic-bezier(.16,1,.3,1);will-change:transform}
+.sx-review-card{flex:0 0 calc(33.333% - 14px);min-width:300px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;padding:30px;transition:transform .4s,border-color .4s,background .4s}
+.sx-review-card:hover{transform:translateY(-4px);border-color:rgba(192,193,255,.22);background:rgba(255,255,255,.05)}
+.sx-review-card__stars{color:#ffd479;font-size:15px;letter-spacing:2px;margin-bottom:14px}
+.sx-review-card__text{color:rgba(255,255,255,.72);font-size:15px;line-height:1.75;margin-bottom:22px;min-height:120px}
+.sx-review-card__who{display:flex;align-items:center;gap:12px}
+.sx-review-card__avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--sx-font-serif);font-size:17px;color:#fff;background:linear-gradient(135deg,rgba(192,193,255,.5),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.15)}
+.sx-reviews__controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:36px}
+.sx-reviews__btn{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s,border-color .2s}
+.sx-reviews__btn:hover{background:rgba(255,255,255,.12);transform:scale(1.06);border-color:rgba(192,193,255,.4)}
+.sx-reviews__dots{display:flex;gap:8px}
+.sx-reviews__dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);border:none;padding:0;cursor:pointer;transition:background .3s,width .3s}
+.sx-reviews__dot.is-active{background:rgba(192,193,255,.9);width:22px;border-radius:4px}
+/* review form */
+.sx-review-form{margin-top:40px;max-width:680px;margin-left:auto;margin-right:auto;overflow:hidden;max-height:0;opacity:0;
+  transition:max-height .5s ease,opacity .5s ease,margin .5s ease}
+.sx-review-form.is-open{max-height:760px;opacity:1}
+.sx-rating-input{display:inline-flex;flex-direction:row-reverse;gap:6px}
+.sx-rating-input input{position:absolute;opacity:0;pointer-events:none}
+.sx-rating-input label{font-size:30px;color:rgba(255,255,255,.2);cursor:pointer;transition:color .15s,transform .15s;line-height:1}
+.sx-rating-input label:hover,.sx-rating-input label:hover ~ label,
+.sx-rating-input input:checked ~ label{color:#ffd479}
+.sx-rating-input label:hover{transform:scale(1.18)}
+.sx-toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);z-index:60;
+  background:rgba(20,20,26,.96);border:1px solid rgba(192,193,255,.3);color:#fff;padding:14px 24px;border-radius:9999px;
+  font-size:14px;opacity:0;transition:opacity .35s,transform .35s;pointer-events:none}
+.sx-toast.is-show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:900px){.sx-review-card{flex-basis:calc(50% - 10px)}}
+@media (max-width:640px){.sx-review-card{flex-basis:calc(100% - 0px)}}
+
+/* ── Footer: drifting live particles ───────────────────────────────────────── */
+.sx-star{animation:sx-twinkle var(--tw,5s) ease-in-out infinite, sx-drift var(--df,26s) ease-in-out infinite alternate}
+@keyframes sx-drift{0%{transform:translate(0,0)}100%{transform:translate(var(--dx,12px),var(--dy,-14px))}}
+
+/* ── smoother global card hover (lift + glow) ──────────────────────────────── */
+.feature-card:hover{box-shadow:0 18px 50px rgba(0,0,0,.4),0 0 0 1px rgba(192,193,255,.18)}
+.pricing-card.featured{box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 40px rgba(192,193,255,.08)}
+
+@media (prefers-reduced-motion:reduce){
+  .sx-works-bg__layer{animation:none!important}
+  .persona-card__media-img{transition:none!important}
+  .sx-reviews__track{transition:none!important}
+}
+
+</style>
+</head>
+<body>
+
+<!-- FLOATING EDITORIAL NAVIGATION (Req 2.1, 2.2, 2.5, 2.6, 2.8, 8.3) -->
+<!-- Fixed glass bar with a constant top offset; stays visible while scrolling.
+     Editorial Nav_Labels show stylized terms but carry a programmatic
+     accessible name (aria-label) describing the real destination section.
+     JS (task 9.1, sx-bindings.js) binds to #sx-nav, .sx-nav-label[data-target],
+     [data-nav-toggle], [data-nav-links], and [data-nav-unavailable]. -->
+<header id="sx-nav" class="sx-glass sx-nav" role="banner">
+  <nav class="sx-nav__inner" aria-label="Primary">
+    <a href="#hero" class="sx-nav__brand" aria-label="SynergiaX — back to top">
+      <span class="msym" aria-hidden="true" style="color:#fff;font-size:26px">blur_on</span>
+      <span class="sx-nav__brand-text">SynergiaX</span>
+    </a>
+
+    <!-- Editorial labels (expanded on desktop, collapsed into the dropdown below 768px) -->
+    <div id="sx-nav-links" class="sx-nav__links" data-nav-links>
+      <a href="#features" class="sx-nav-label" data-target="features" aria-label="Services">
+        <span aria-hidden="true">ATELIER</span>
+      </a>
+      <a href="#works" class="sx-nav-label" data-target="works" aria-label="Who we work with">
+        <span aria-hidden="true">WORLDS</span>
+      </a>
+      <a href="#pricing" class="sx-nav-label" data-target="pricing" aria-label="Pricing">
+        <span aria-hidden="true">OFFERINGS</span>
+      </a>
+      <a href="#contact" class="sx-nav-label" data-target="contact" aria-label="Contact">
+        <span aria-hidden="true">CONNECT</span>
+      </a>
+    </div>
+
+    <!-- Persistent CTA to the Lead_Capture_Form — visible in every state (Req 2.5) -->
+    <a href="#project" class="btn-primary sx-nav__cta" data-target="project">Start a Project</a>
+
+    <!-- Mobile collapse control — shown below 768px, reveals [data-nav-links] (Req 2.6) -->
+    <button type="button" class="sx-nav__toggle" data-nav-toggle
+            aria-expanded="false" aria-controls="sx-nav-links" aria-label="Open navigation menu">
+      <span class="msym" aria-hidden="true">menu</span>
+    </button>
+  </nav>
+
+  <!-- Unavailable indicator — hidden until JS reveals it for an absent target (Req 2.4) -->
+  <p class="sx-nav__unavailable" data-nav-unavailable hidden role="status" aria-live="polite">
+    That section isn't available yet.
+  </p>
+</header>
+
+<!-- HERO — cinematic layered section (Req 1.1–1.6, 9.5, 9.6, 8.1) -->
+<!-- HERO — CINEMATIC PORTAL (sx-cinematic.js): a sticky scroll-driven viewport.
+     The glass portal zooms toward the viewer, curtains sweep open on entrance,
+     layers parallax to the mouse, then scene 2 + an arc persona slider reveal.
+     Semantic h1/p/stats live in scene 1 for SEO/a11y; the world/portal/curtain
+     /arc layers are decorative. prefers-reduced-motion collapses to a static
+     hero (scene 1 only) — see #sx-enhance + sx-cinematic.js. (Req 1.1–1.6) -->
+<section id="hero" class="sx-cine" data-cine>
+  <div class="sx-cine__viewport" data-cine-viewport>
+    <div class="sx-cine__fallback" aria-hidden="true"></div>
+
+    <!-- Far digital-flagship interior (gentle zoom) -->
+    <img class="sx-cine__world" data-cine-world src="./assets/world.png" alt="" aria-hidden="true" decoding="async"/>
+
+    <!-- Arc card slider — decorative reveal of the personas (canonical list in #works) -->
+    <div class="sx-cine__arc" data-cine-arc aria-hidden="true">
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/gyms.jpg')"></div><span class="sx-arc__card-num">01</span><span class="msym" aria-hidden="true">fitness_center</span><div><div class="sx-arc__card-title">Gyms</div><div class="sx-arc__card-desc">Memberships &amp; class booking</div></div></article>
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/salons.jpg')"></div><span class="sx-arc__card-num">02</span><span class="msym" aria-hidden="true">content_cut</span><div><div class="sx-arc__card-title">Salons</div><div class="sx-arc__card-desc">Bookings &amp; gift cards</div></div></article>
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/clinics.jpg')"></div><span class="sx-arc__card-num">03</span><span class="msym" aria-hidden="true">local_hospital</span><div><div class="sx-arc__card-title">Clinics</div><div class="sx-arc__card-desc">Appointments &amp; portals</div></div></article>
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/restaurants.jpg')"></div><span class="sx-arc__card-num">04</span><span class="msym" aria-hidden="true">restaurant</span><div><div class="sx-arc__card-title">Cafes</div><div class="sx-arc__card-desc">Menus &amp; reservations</div></div></article>
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/retail.jpg')"></div><span class="sx-arc__card-num">05</span><span class="msym" aria-hidden="true">storefront</span><div><div class="sx-arc__card-title">Retail</div><div class="sx-arc__card-desc">Lookbooks &amp; e-commerce</div></div></article>
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/beauty.jpg')"></div><span class="sx-arc__card-num">06</span><span class="msym" aria-hidden="true">spa</span><div><div class="sx-arc__card-title">Spas</div><div class="sx-arc__card-desc">Packages &amp; scheduling</div></div></article>
+      <article class="sx-arc__card"><div class="sx-arc__card-img" style="background-image:url('./assets/personas/yoga.jpg')"></div><span class="sx-arc__card-num">07</span><span class="msym" aria-hidden="true">self_improvement</span><div><div class="sx-arc__card-title">Studios</div><div class="sx-arc__card-desc">Classes &amp; community</div></div></article>
+    </div>
+
+    <!-- Glass portal that zooms toward the viewer -->
+    <img class="sx-cine__portal" data-cine-portal src="./assets/portal.png" alt="" aria-hidden="true" decoding="async"/>
+    <div class="sx-cine__vignette" aria-hidden="true"></div>
+
+    <!-- Liquid-glass curtains sweep open on entrance -->
+    <img class="sx-cine__curtain sx-cine__curtain--l" data-cine-curtain-l src="./assets/curtain.png" alt="" aria-hidden="true" decoding="async"/>
+    <img class="sx-cine__curtain sx-cine__curtain--r" data-cine-curtain-r src="./assets/curtain.png" alt="" aria-hidden="true" decoding="async"/>
+
+    <!-- SCENE 1 — semantic hero content -->
+    <div class="sx-cine__scene1" data-cine-scene1>
+      <span class="section-label" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:9999px;padding:6px 16px;display:inline-block">
+        &#10024; Premium Web Design for Local Businesses
+      </span>
+
+      <h1 style="font-family:'Instrument Serif',serif;font-size:clamp(3rem,8vw,6rem);line-height:1.05;letter-spacing:-.025em;max-width:900px;margin:24px 0;text-shadow:0 2px 30px rgba(0,0,0,.7)">
+        Your local business<br/>deserves a <em>world-class</em> website.
+      </h1>
+
+      <p style="font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.78);max-width:540px;line-height:1.7;margin-bottom:40px;text-shadow:0 1px 12px rgba(0,0,0,.6)">
+        We design and build high-converting websites for gyms, salons, clinics, cafes, and every local business ready to dominate their area online.
+      </p>
+
+      <div class="hero-cta-row" data-trail style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:64px">
+        <a href="#project" class="btn-primary">
+          <span class="msym" aria-hidden="true" style="font-size:18px">rocket_launch</span> Get Your Website
+        </a>
+        <a href="#works" class="btn-ghost">See Our Work</a>
+      </div>
+
+      <div class="glass stat-bar" style="border-radius:20px;padding:32px 48px;display:flex;gap:48px;flex-wrap:wrap;justify-content:center;max-width:800px">
+        <div style="text-align:center">
+          <div class="stat-num" data-count="50" data-count-suffix="+">50+</div>
+          <div class="section-label" style="margin-top:6px">Clients Served</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.1)" class="hidden md:block"></div>
+        <div style="text-align:center">
+          <div class="stat-num" data-count="3" data-count-suffix="&#215;">3&#215;</div>
+          <div class="section-label" style="margin-top:6px">Avg. Revenue Uplift</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.1)" class="hidden md:block"></div>
+        <div style="text-align:center">
+          <div class="stat-num" data-count="14">14</div>
+          <div class="section-label" style="margin-top:6px">Days to Launch</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.1)" class="hidden md:block"></div>
+        <div style="text-align:center">
+          <div class="stat-num" data-count="100" data-count-suffix="%">100%</div>
+          <div class="section-label" style="margin-top:6px">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 2 — portal reveal -->
+    <div class="sx-cine__scene2" data-cine-scene2>
+      <span class="section-label" style="display:block;margin-bottom:14px">Step Through The Portal</span>
+      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,7vw,5rem);line-height:1.05;letter-spacing:-.02em;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.6)">
+        Into your <em>digital flagship</em>
+      </h2>
+      <p style="font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.8);max-width:460px;line-height:1.7;margin-top:18px;text-shadow:0 1px 12px rgba(0,0,0,.6)">
+        Where your brand finally looks the way it deserves to — and your customers can&rsquo;t look away.
+      </p>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="sx-cine__cue" data-cine-cue aria-hidden="true">
+      <span class="sx-cine__cue-ring"><span class="msym" style="font-size:18px">expand_more</span></span>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES MARQUEE -->
+<section class="sx-marquee-sec sx-snap">
+  <div class="sx-marquee-glow" aria-hidden="true"></div>
+  <div style="text-align:center;margin-bottom:30px;position:relative;z-index:1">
+    <span class="section-label">Trusted across local industries</span>
+  </div>
+  <div class="sx-marquee" aria-hidden="true">
+    <div class="sx-marquee__track">
+      <div class="sx-marquee__group"><span class="sx-pill"><span class="msym" aria-hidden="true">fitness_center</span>Gyms</span><span class="sx-pill"><span class="msym" aria-hidden="true">content_cut</span>Salons</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_hospital</span>Clinics</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_cafe</span>Cafes</span><span class="sx-pill"><span class="msym" aria-hidden="true">restaurant</span>Restaurants</span><span class="sx-pill"><span class="msym" aria-hidden="true">spa</span>Spas</span><span class="sx-pill"><span class="msym" aria-hidden="true">exercise</span>Fitness Studios</span><span class="sx-pill"><span class="msym" aria-hidden="true">storefront</span>Boutiques</span><span class="sx-pill"><span class="msym" aria-hidden="true">gavel</span>Law Firms</span><span class="sx-pill"><span class="msym" aria-hidden="true">self_improvement</span>Yoga</span><span class="sx-pill"><span class="msym" aria-hidden="true">dentistry</span>Dental</span><span class="sx-pill"><span class="msym" aria-hidden="true">bakery_dining</span>Bakeries</span><span class="sx-pill"><span class="msym" aria-hidden="true">fitness_center</span>Gyms</span><span class="sx-pill"><span class="msym" aria-hidden="true">content_cut</span>Salons</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_hospital</span>Clinics</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_cafe</span>Cafes</span><span class="sx-pill"><span class="msym" aria-hidden="true">restaurant</span>Restaurants</span><span class="sx-pill"><span class="msym" aria-hidden="true">spa</span>Spas</span><span class="sx-pill"><span class="msym" aria-hidden="true">exercise</span>Fitness Studios</span><span class="sx-pill"><span class="msym" aria-hidden="true">storefront</span>Boutiques</span><span class="sx-pill"><span class="msym" aria-hidden="true">gavel</span>Law Firms</span><span class="sx-pill"><span class="msym" aria-hidden="true">self_improvement</span>Yoga</span><span class="sx-pill"><span class="msym" aria-hidden="true">dentistry</span>Dental</span><span class="sx-pill"><span class="msym" aria-hidden="true">bakery_dining</span>Bakeries</span></div>
+      <div class="sx-marquee__group"><span class="sx-pill"><span class="msym" aria-hidden="true">fitness_center</span>Gyms</span><span class="sx-pill"><span class="msym" aria-hidden="true">content_cut</span>Salons</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_hospital</span>Clinics</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_cafe</span>Cafes</span><span class="sx-pill"><span class="msym" aria-hidden="true">restaurant</span>Restaurants</span><span class="sx-pill"><span class="msym" aria-hidden="true">spa</span>Spas</span><span class="sx-pill"><span class="msym" aria-hidden="true">exercise</span>Fitness Studios</span><span class="sx-pill"><span class="msym" aria-hidden="true">storefront</span>Boutiques</span><span class="sx-pill"><span class="msym" aria-hidden="true">gavel</span>Law Firms</span><span class="sx-pill"><span class="msym" aria-hidden="true">self_improvement</span>Yoga</span><span class="sx-pill"><span class="msym" aria-hidden="true">dentistry</span>Dental</span><span class="sx-pill"><span class="msym" aria-hidden="true">bakery_dining</span>Bakeries</span><span class="sx-pill"><span class="msym" aria-hidden="true">fitness_center</span>Gyms</span><span class="sx-pill"><span class="msym" aria-hidden="true">content_cut</span>Salons</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_hospital</span>Clinics</span><span class="sx-pill"><span class="msym" aria-hidden="true">local_cafe</span>Cafes</span><span class="sx-pill"><span class="msym" aria-hidden="true">restaurant</span>Restaurants</span><span class="sx-pill"><span class="msym" aria-hidden="true">spa</span>Spas</span><span class="sx-pill"><span class="msym" aria-hidden="true">exercise</span>Fitness Studios</span><span class="sx-pill"><span class="msym" aria-hidden="true">storefront</span>Boutiques</span><span class="sx-pill"><span class="msym" aria-hidden="true">gavel</span>Law Firms</span><span class="sx-pill"><span class="msym" aria-hidden="true">self_improvement</span>Yoga</span><span class="sx-pill"><span class="msym" aria-hidden="true">dentistry</span>Dental</span><span class="sx-pill"><span class="msym" aria-hidden="true">bakery_dining</span>Bakeries</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES / SERVICES BENTO -->
+<section id="features" class="sx-snap" style="padding:120px 24px;max-width:1200px;margin:0 auto">
+  <div class="reveal" style="text-align:center;margin-bottom:64px">
+    <span class="section-label" style="display:block;margin-bottom:12px">What We Build</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px">Everything your business needs<br/><em>to win online</em></h2>
+    <p style="color:rgba(255,255,255,.5);font-size:17px;max-width:480px;margin:0 auto;line-height:1.7">We handle the full digital stack — from design to launch to ongoing growth.</p>
+  </div>
+
+  <!-- Bento grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+
+    <div class="feature-card reveal" style="grid-column:span 1">
+      <span class="msym" aria-hidden="true" style="font-size:32px;margin-bottom:20px;display:block">palette</span>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:10px;line-height:1.2">Premium Design</h3>
+      <p style="color:rgba(255,255,255,.5);font-size:15px;line-height:1.7">Strategy-led UI/UX crafted to convert local foot traffic into loyal, high-value clients. Every pixel earns its place.</p>
+    </div>
+
+    <div class="feature-card reveal" style="grid-column:span 1">
+      <span class="msym" aria-hidden="true" style="font-size:32px;margin-bottom:20px;display:block">phone_iphone</span>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:10px;line-height:1.2">Mobile-First Build</h3>
+      <p style="color:rgba(255,255,255,.5);font-size:15px;line-height:1.7">Your customers are on their phones. We build for that first — blazing fast, fully responsive, and thumb-friendly.</p>
+    </div>
+
+    <div class="feature-card reveal" style="grid-column:span 1">
+      <span class="msym" aria-hidden="true" style="font-size:32px;margin-bottom:20px;display:block">calendar_month</span>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:10px;line-height:1.2">Booking Integration</h3>
+      <p style="color:rgba(255,255,255,.5);font-size:15px;line-height:1.7">Seamless appointment booking, class schedules, and reservation systems built right into your site. Zero friction.</p>
+    </div>
+
+    <div class="feature-card reveal" style="grid-column:span 1">
+      <span class="msym" aria-hidden="true" style="font-size:32px;margin-bottom:20px;display:block">search</span>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:10px;line-height:1.2">Local SEO</h3>
+      <p style="color:rgba(255,255,255,.5);font-size:15px;line-height:1.7">Dominate "near me" searches. We optimize your site and Google Business Profile to pull in local customers on autopilot.</p>
+    </div>
+
+    <div class="feature-card reveal" style="grid-column:span 1">
+      <span class="msym" aria-hidden="true" style="font-size:32px;margin-bottom:20px;display:block">shopping_cart</span>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:10px;line-height:1.2">E-Commerce &amp; Gift Cards</h3>
+      <p style="color:rgba(255,255,255,.5);font-size:15px;line-height:1.7">Sell products, memberships, or gift cards directly from your site with a luxury checkout experience.</p>
+    </div>
+
+    <div class="feature-card reveal" style="grid-column:span 1">
+      <span class="msym" aria-hidden="true" style="font-size:32px;margin-bottom:20px;display:block">insights</span>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:10px;line-height:1.2">Analytics Dashboard</h3>
+      <p style="color:rgba(255,255,255,.5);font-size:15px;line-height:1.7">Know exactly what is working. We set up real-time dashboards so you can see traffic, leads, and conversions at a glance.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS / LIVE PREVIEW (full-height) -->
+<section id="process" class="sx-snap" style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 24px;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);overflow:hidden">
+  <div class="sx-process-glow" aria-hidden="true"></div>
+  <div style="max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center" class="grid-cols-responsive">
+      <div class="reveal">
+        <span class="section-label" style="display:block;margin-bottom:12px">Our Process</span>
+        <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:24px">From first call to<br/><em>live website</em> in 14 days</h2>
+        <p style="color:rgba(255,255,255,.55);font-size:16px;line-height:1.8;margin-bottom:40px">We have stripped out every bottleneck. Our streamlined process means you get a polished, production-ready website faster than you thought possible.</p>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="check-item"><span class="msym" aria-hidden="true">radio_button_checked</span><div><strong style="display:block;color:#fff;margin-bottom:2px">Day 1 — Discovery Call</strong><span style="color:rgba(255,255,255,.45);font-size:14px">We learn your business, goals, and target customers inside out.</span></div></div>
+          <div class="check-item"><span class="msym" aria-hidden="true">radio_button_checked</span><div><strong style="display:block;color:#fff;margin-bottom:2px">Days 2–5 — Design Mockups</strong><span style="color:rgba(255,255,255,.45);font-size:14px">You receive full visual designs for approval before we write a line of code.</span></div></div>
+          <div class="check-item"><span class="msym" aria-hidden="true">radio_button_checked</span><div><strong style="display:block;color:#fff;margin-bottom:2px">Days 6–12 — Build &amp; Integrate</strong><span style="color:rgba(255,255,255,.45);font-size:14px">We develop, integrate booking systems, SEO, and all features.</span></div></div>
+          <div class="check-item"><span class="msym" aria-hidden="true">radio_button_checked</span><div><strong style="display:block;color:#fff;margin-bottom:2px">Day 14 — Launch</strong><span style="color:rgba(255,255,255,.45);font-size:14px">Your site goes live, indexed, and ready to pull in customers.</span></div></div>
+        </div>
+      </div>
+
+      <!-- Mock site preview: golden animated frame + 3D pointer tilt -->
+      <div class="reveal sx-gold-frame" data-tilt3d style="border-radius:26px">
+        <div class="sx-gold-frame__inner glass" style="border-radius:24px;overflow:hidden;padding:0">
+          <div style="background:rgba(255,255,255,0.06);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)">
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,80,80,.5)"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,200,0,.5)"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(0,200,100,.5)"></div>
+            <div style="flex:1;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.3);margin-left:8px">yourlocalbusiness.com</div>
+          </div>
+          <div style="padding:28px;background:rgba(10,10,10,.6)">
+            <div style="background:rgba(255,255,255,.05);border-radius:12px;height:120px;margin-bottom:16px;display:flex;align-items:center;justify-content:center">
+              <span style="font-family:'Instrument Serif',serif;font-size:22px;color:rgba(255,255,255,.7)">Hero Banner</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;height:60px"></div>
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;height:60px"></div>
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;height:60px"></div>
+            </div>
+            <div style="background:rgba(192,193,255,.07);border-radius:10px;height:40px;margin-bottom:12px;display:flex;align-items:center;padding:0 14px">
+              <span style="font-size:12px;color:rgba(192,193,255,.7)">Book an Appointment &#8594;</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="background:rgba(255,255,255,.03);border-radius:8px;height:50px"></div>
+              <div style="background:rgba(255,255,255,.03);border-radius:8px;height:50px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- result metrics row to fill the full-height section -->
+    <div class="reveal reveal-stagger sx-process-metrics">
+      <div class="sx-metric"><div class="sx-metric__num" data-count="14">14</div><div class="sx-metric__label">Days, idea to launch</div></div>
+      <div class="sx-metric"><div class="sx-metric__num" data-count="180" data-count-suffix="%">180%</div><div class="sx-metric__label">Avg. booking uplift</div></div>
+      <div class="sx-metric"><div class="sx-metric__num" data-count="4.9">4.9</div><div class="sx-metric__label">Avg. client rating</div></div>
+      <div class="sx-metric"><div class="sx-metric__num" data-count="0" data-count-prefix="" data-count-suffix="" >0</div><div class="sx-metric__label">Headaches, handled for you</div></div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── Responsive layout + section helpers (Req 6.1–6.6, 5.1, 4.5/4.6) ───────── */
+/* Any real imagery added later never exceeds its column (no 320–1920 overflow). */
+img{max-width:100%;height:auto}
+
+/* Lead form helpers consumed by SX.bindings.bindLeadForm (per-field errors + status). */
+.field-error{color:#ffb4ab;font-size:11px;margin-top:6px;letter-spacing:.03em;line-height:1.4}
+.field-error[hidden]{display:none}
+.lead-status{margin:0;font-size:14px;line-height:1.5;padding:12px 16px;border-radius:var(--sx-radius-control);letter-spacing:.01em}
+.lead-status[hidden]{display:none}
+.lead-status[data-status-kind="success"]{background:rgba(192,193,255,.1);border:1px solid rgba(192,193,255,.28);color:#fff}
+.lead-status[data-status-kind="error"]{background:rgba(255,180,171,.08);border:1px solid rgba(255,180,171,.28);color:#ffb4ab}
+
+/* FAQ disclosure icon driven by aria-expanded (set by SX.bindings.bindFaq). */
+[data-faq-toggle] .faq-icon{transition:transform .3s ease}
+[data-faq-toggle][aria-expanded="true"] .faq-icon{transform:rotate(45deg)}
+.faq-answer[hidden]{display:none}
+
+/* Tablet (768–1023): keep multi-column grids, ease the two-up editorial splits. */
+@media (min-width:768px) and (max-width:1023.98px){
+  .grid-cols-responsive{gap:48px}
+}
+
+/* Single column below 768px — each section fills the available width (Req 6.2). */
+@media (max-width:767.98px){
+  .grid-cols-responsive{grid-template-columns:1fr!important;gap:40px!important}
+  .form-grid-2{grid-template-columns:1fr!important}
+  /* Keep the Hero headline + primary CTA within the initial viewport (Req 6.5). */
+  .sx-hero{padding:104px 20px 56px}
+  .sx-hero .hero-cta-row{margin-bottom:40px!important}
+  .sx-hero .stat-bar{padding:24px 20px!important;gap:24px 28px!important;margin-bottom:0!important}
+}
+</style>
+
+<!-- WHO WE WORK WITH -->
+<section id="works" class="sx-snap" style="padding:120px 24px;position:relative">
+  <!-- Hover-reveal themed background: two crossfading image layers + scrim.
+       Default + per-card images wired by sx-interactions.js (data-bg on cards). -->
+  <div class="sx-works-bg" data-works-bg aria-hidden="true">
+    <div class="sx-works-bg__layer" data-works-layer="0"></div>
+    <div class="sx-works-bg__layer" data-works-layer="1"></div>
+    <div class="sx-works-bg__scrim"></div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center;margin-bottom:64px">
+      <span class="section-label" style="display:block;margin-bottom:12px">Who We Work With</span>
+      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px">Built for <em>every</em> local business</h2>
+      <p style="color:rgba(255,255,255,.6);font-size:17px;max-width:480px;margin:0 auto;line-height:1.7">If you serve your community face-to-face, we can help you grow online. Hover a card to step inside.</p>
+    </div>
+
+    <div class="reveal reveal-stagger" data-works-grid style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+
+      <div class="persona-card" data-bg="./assets/personas/gyms.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/gyms.jpg')"></div><span class="msym" aria-hidden="true">fitness_center</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Gyms &amp; Fitness</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Membership sign-ups, class schedules, trainer bios, and PT booking.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/salons.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/salons.jpg')"></div><span class="msym" aria-hidden="true">content_cut</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Salons &amp; Spas</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Elegant booking flows, service menus, team profiles, and gift cards.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/clinics.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/clinics.jpg')"></div><span class="msym" aria-hidden="true">local_hospital</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Clinics &amp; Doctors</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Patient portals, appointment booking, service listings, and trust-building design.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/restaurants.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/restaurants.jpg')"></div><span class="msym" aria-hidden="true">restaurant</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Restaurants &amp; Cafes</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Digital menus, table reservations, event listings, and online ordering.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/retail.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/retail.jpg')"></div><span class="msym" aria-hidden="true">storefront</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Retail &amp; Boutiques</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Shoppable lookbooks, local inventory, loyalty programmes, and branded e-commerce.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/yoga.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/yoga.jpg')"></div><span class="msym" aria-hidden="true">self_improvement</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Yoga &amp; Wellness</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Class timetables, memberships, instructor profiles, and serene booking.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/beauty.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/beauty.jpg')"></div><span class="msym" aria-hidden="true">spa</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Beauty &amp; Nail Bars</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Service galleries, appointment booking, packages, and gift vouchers.</p></div>
+      </div>
+
+      <div class="persona-card" data-bg="./assets/personas/coaching.jpg">
+        <div class="persona-card__media"><div class="persona-card__media-img" style="background-image:url('./assets/personas/coaching.jpg')"></div><span class="msym" aria-hidden="true">groups</span></div>
+        <div class="persona-card__body"><h3 style="font-family:'Instrument Serif',serif;font-size:20px;margin-bottom:6px">Coaching &amp; Studios</h3><p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">Programmes, session booking, testimonials, and community building.</p></div>
+      </div>
+
+    </div>
+    <div class="sx-works-caption" data-works-caption aria-live="polite">
+      <h3 class="sx-works-caption__title" data-works-caption-title>Gyms &amp; Fitness</h3>
+      <p class="sx-works-caption__desc" data-works-caption-desc>Membership sign-ups, class schedules, trainer bios, and PT booking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS (interactive — rendered + persisted by sx-interactions.js) -->
+<section id="reviews" class="sx-snap" data-reviews style="padding:100px 24px 120px;background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,.05)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="sx-reviews__head reveal">
+      <div>
+        <span class="section-label" style="display:block;margin-bottom:12px">Client Stories</span>
+        <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-.02em">What our clients say</h2>
+      </div>
+      <div class="sx-reviews__rating">
+        <div class="sx-reviews__avg" data-reviews-avg>5.0</div>
+        <div>
+          <div class="sx-reviews__stars" data-reviews-avgstars>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="sx-reviews__count" data-reviews-count>from 0 reviews</div>
+        </div>
+        <button type="button" class="btn-ghost" data-reviews-toggle style="margin-left:8px">
+          <span class="msym" aria-hidden="true" style="font-size:18px">rate_review</span> Write a review
+        </button>
+      </div>
+    </div>
+
+    <div class="sx-reviews__viewport">
+      <div class="sx-reviews__track" data-reviews-track role="list"></div>
+    </div>
+
+    <div class="sx-reviews__controls">
+      <button type="button" class="sx-reviews__btn" data-reviews-prev aria-label="Previous reviews"><span class="msym" aria-hidden="true">chevron_left</span></button>
+      <div class="sx-reviews__dots" data-reviews-dots></div>
+      <button type="button" class="sx-reviews__btn" data-reviews-next aria-label="Next reviews"><span class="msym" aria-hidden="true">chevron_right</span></button>
+    </div>
+
+    <!-- Leave-a-review form -->
+    <form class="sx-review-form glass" data-review-form novalidate>
+      <div style="padding:32px">
+        <h3 style="font-family:'Instrument Serif',serif;font-size:24px;margin-bottom:6px">Share your experience</h3>
+        <p style="color:rgba(255,255,255,.5);font-size:14px;margin-bottom:22px">Your review appears instantly below. (Saved on this device.)</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="form-grid-2">
+          <input class="input-field" data-review-name placeholder="Your name" maxlength="60" required/>
+          <input class="input-field" data-review-biz placeholder="Business &amp; city" maxlength="80" required/>
+        </div>
+        <div style="margin:20px 0">
+          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">Your rating</div>
+          <div class="sx-rating-input" data-review-rating>
+            <input type="radio" name="rv-rating" id="rv5" value="5" checked/><label for="rv5" title="5 stars">&#9733;</label>
+            <input type="radio" name="rv-rating" id="rv4" value="4"/><label for="rv4" title="4 stars">&#9733;</label>
+            <input type="radio" name="rv-rating" id="rv3" value="3"/><label for="rv3" title="3 stars">&#9733;</label>
+            <input type="radio" name="rv-rating" id="rv2" value="2"/><label for="rv2" title="2 stars">&#9733;</label>
+            <input type="radio" name="rv-rating" id="rv1" value="1"/><label for="rv1" title="1 star">&#9733;</label>
+          </div>
+        </div>
+        <textarea class="input-field" data-review-text placeholder="Tell us how your project went..." style="height:104px;resize:none" maxlength="400" required></textarea>
+        <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+          <button type="submit" class="btn-primary"><span class="msym" aria-hidden="true" style="font-size:18px">send</span> Post review</button>
+          <button type="button" class="btn-ghost" data-review-cancel>Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="sx-snap" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 24px;max-width:1200px;margin:0 auto">
+  <div class="reveal" style="text-align:center;margin-bottom:40px">
+    <span class="section-label" style="display:block;margin-bottom:12px">Simple Pricing</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px">Transparent. No surprises.</h2>
+    <p style="color:rgba(255,255,255,.5);font-size:17px;max-width:440px;margin:0 auto;line-height:1.7">One-time project fee. No bloated retainers unless you want ongoing growth support.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start">
+
+    <!-- Starter -->
+    <div class="pricing-card reveal">
+      <div class="section-label" style="margin-bottom:16px">Starter</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:3rem;line-height:1;margin-bottom:6px">&#8377;24,999</div>
+      <div style="color:rgba(255,255,255,.35);font-size:13px;margin-bottom:32px">one-time</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Up to 5 pages</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Mobile-responsive design</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Contact form integration</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Basic local SEO setup</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> 14-day delivery</div>
+        <div class="check-item" style="opacity:.3"><span class="msym" aria-hidden="true" style="font-size:18px">remove</span> Booking system</div>
+        <div class="check-item" style="opacity:.3"><span class="msym" aria-hidden="true" style="font-size:18px">remove</span> E-commerce</div>
+      </div>
+      <a href="#project" class="btn-ghost" style="width:100%;justify-content:center">Get Started</a>
+    </div>
+
+    <!-- Growth (featured) -->
+    <div class="pricing-card featured reveal" style="position:relative">
+      <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#fff;color:#000;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:4px 14px;border-radius:9999px">Most Popular</div>
+      <div class="section-label" style="margin-bottom:16px;color:#c0c1ff">Growth</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:3rem;line-height:1;margin-bottom:6px">&#8377;49,999</div>
+      <div style="color:rgba(255,255,255,.35);font-size:13px;margin-bottom:32px">one-time</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Up to 10 pages</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Premium UI/UX design</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Booking system integration</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Full local SEO + Google profile</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Analytics dashboard</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> 14-day delivery</div>
+        <div class="check-item" style="opacity:.3"><span class="msym" aria-hidden="true" style="font-size:18px">remove</span> E-commerce store</div>
+      </div>
+      <a href="#project" class="btn-primary" style="width:100%;justify-content:center">Start Growing</a>
+    </div>
+
+    <!-- Elite -->
+    <div class="pricing-card reveal">
+      <div class="section-label" style="margin-bottom:16px">Elite</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:3rem;line-height:1;margin-bottom:6px">&#8377;89,999</div>
+      <div style="color:rgba(255,255,255,.35);font-size:13px;margin-bottom:32px">one-time</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Unlimited pages</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Custom brand identity</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> E-commerce + gift cards</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Booking + CRM integration</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Advanced SEO strategy</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> 3 months post-launch support</div>
+        <div class="check-item"><span class="msym" aria-hidden="true" style="font-size:18px">check_circle</span> Priority 14-day delivery</div>
+      </div>
+      <a href="#project" class="btn-ghost" style="width:100%;justify-content:center">Go Elite</a>
+    </div>
+
+  </div>
+  <p style="text-align:center;color:rgba(255,255,255,.3);font-size:13px;margin-top:32px">All prices in INR. Custom enterprise packages available — <a href="#contact" style="color:rgba(255,255,255,.5);text-decoration:underline">talk to us</a>.</p>
+</section>
+
+<!-- FAQ -->
+<section class="sx-snap" style="padding:100px 24px 120px;background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,.05)">
+  <div style="max-width:720px;margin:0 auto" data-faq>
+    <div class="reveal" style="text-align:center;margin-bottom:56px">
+      <span class="section-label" style="display:block;margin-bottom:12px">FAQ</span>
+      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.02em">Common questions</h2>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-1" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">Do I need any technical knowledge?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-1">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">None at all. We handle everything — design, development, hosting setup, domain, and launch. You just share your business details and approve the designs.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-2" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">Is the 14-day launch really achievable?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-2">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">Yes, for standard packages. We have a proven process and a dedicated team. Larger custom builds can take a little longer, but we always agree the timeline upfront — no surprises.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-3" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">Who owns the website and the content?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-3">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">You do — 100%. Once the project is complete and paid, the site, domain, and all assets are fully yours. No lock-in, no hostage hosting.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-4" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">What about hosting, updates, and maintenance?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-4">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">We set up fast, secure hosting during the build. After launch you can self-manage, or take an affordable monthly care plan for updates, backups, and ongoing tweaks.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-5" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">Will my site actually bring in more customers?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-5">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">That is the whole point. Every build is engineered for conversions — fast load times, clear calls-to-action, booking flows, and local SEO so the right people find you and take action.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-6" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">Do you work with businesses outside Pune?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-6">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">Absolutely. We are based in Pune but work with local businesses across India and worldwide. Everything runs smoothly over calls and shared tools.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-faq-item style="padding:24px 0;border-bottom:none">
+      <button type="button" class="faq-trigger" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-7" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:0">
+        <span style="font-family:'Instrument Serif',serif;font-size:19px">What do you need from me to get started?</span>
+        <span class="msym faq-icon" aria-hidden="true" style="flex-shrink:0;margin-left:16px">add</span>
+      </button>
+      <div class="faq-answer" data-faq-answer id="faq-answer-7">
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.75;padding-top:14px">Just your business name, what you do, any photos you have, and your goals. We guide you through a simple intake — no lengthy briefs or documents needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT INTAKE FORM -->
+<section id="project" class="sx-snap" style="position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 24px;max-width:1200px;margin:0 auto">
+  <div data-starfield="55" aria-hidden="true"></div>
+  <div style="width:100%">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start" class="grid-cols-responsive">
+    <div class="reveal">
+      <span class="section-label" style="display:block;margin-bottom:12px">Start a Project</span>
+      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:20px">Tell us about your <em>vision.</em></h2>
+      <p style="color:rgba(255,255,255,.5);font-size:16px;line-height:1.8;margin-bottom:40px">Fill in the form and we will get back to you within 24 hours with a personalised plan and pricing.</p>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="check-item"><span class="msym" aria-hidden="true">check_circle</span> Free discovery call included</div>
+        <div class="check-item"><span class="msym" aria-hidden="true">check_circle</span> Custom digital strategy audit</div>
+        <div class="check-item"><span class="msym" aria-hidden="true">check_circle</span> No commitment required</div>
+        <div class="check-item"><span class="msym" aria-hidden="true">check_circle</span> Response within 24 hours</div>
+      </div>
+    </div>
+    <div class="reveal sx-gold-frame" data-tilt3d style="border-radius:30px"><div class="glass sx-gold-frame__inner" style="border-radius:28px;padding:40px" id="formContainer">
+      <form id="sx-lead-form" novalidate style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="form-grid-2">
+          <div>
+            <label for="lead-name" style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px">Your Name</label>
+            <input type="text" id="lead-name" name="name" placeholder="Rahul Sharma" class="input-field" autocomplete="name" required/>
+            <p class="field-error" data-error-for="name" role="alert" hidden></p>
+          </div>
+          <div>
+            <label for="lead-business-name" style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px">Business Name</label>
+            <input type="text" id="lead-business-name" name="businessName" placeholder="Iron Peak Fitness" class="input-field" autocomplete="organization" required/>
+            <p class="field-error" data-error-for="businessName" role="alert" hidden></p>
+          </div>
+        </div>
+        <div>
+          <label for="lead-email" style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px">Business Email</label>
+          <input type="email" id="lead-email" name="email" placeholder="hello@yourbusiness.com" class="input-field" autocomplete="email" required/>
+          <p class="field-error" data-error-for="email" role="alert" hidden></p>
+        </div>
+        <div>
+          <label for="lead-phone" style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px">Phone Number</label>
+          <input type="tel" id="lead-phone" name="phone" placeholder="+91 98765 43210" class="input-field" autocomplete="tel" inputmode="tel" required/>
+          <p class="field-error" data-error-for="phone" role="alert" hidden></p>
+        </div>
+        <div>
+          <label for="lead-business-type" style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px">Business Type</label>
+          <select id="lead-business-type" name="businessType" class="input-field" style="cursor:pointer" required>
+            <option value="" style="background:#1a1a1a">Select your business type</option>
+            <option value="gym" style="background:#1a1a1a">Gym / Fitness Studio</option>
+            <option value="salon" style="background:#1a1a1a">Salon / Spa</option>
+            <option value="clinic" style="background:#1a1a1a">Clinic / Healthcare</option>
+            <option value="restaurant" style="background:#1a1a1a">Restaurant / Cafe</option>
+            <option value="retail" style="background:#1a1a1a">Retail / Boutique</option>
+            <option value="other" style="background:#1a1a1a">Other</option>
+          </select>
+          <p class="field-error" data-error-for="businessType" role="alert" hidden></p>
+        </div>
+        <div>
+          <label for="lead-brief" style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px">Tell Us Your Goal</label>
+          <textarea id="lead-brief" name="brief" placeholder="What do you want your website to achieve? More bookings, online sales, local visibility..." class="input-field" style="height:110px;resize:none" required></textarea>
+          <p class="field-error" data-error-for="brief" role="alert" hidden></p>
+        </div>
+        <button type="submit" id="submitBtn" class="btn-primary" style="width:100%;justify-content:center;padding:16px;font-size:15px;border-radius:14px">
+          <span class="msym" aria-hidden="true">send</span> Submit Project Brief
+        </button>
+        <p class="lead-status" data-lead-status role="status" aria-live="polite" hidden></p>
+      </form>
+    </div></div>
+  </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<section id="contact" style="padding:80px 24px;background:rgba(255,255,255,0.01);border-top:1px solid rgba(255,255,255,.06)">
+  <h2 class="sx-visually-hidden">Contact SynergiaX</h2>
+  <div data-starfield="70" aria-hidden="true"></div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:48px;align-items:start">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
+        <span class="msym" aria-hidden="true" style="color:#fff;font-size:26px">blur_on</span>
+        <span style="font-family:'Instrument Serif',serif;font-size:22px;color:#fff;letter-spacing:-.02em">SynergiaX</span>
+      </div>
+      <p style="color:rgba(255,255,255,.4);font-size:14px;line-height:1.8;max-width:280px">We craft premium digital experiences for local businesses ready to grow. Based in Pune, working worldwide.</p>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:16px">Services</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="#features" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Premium Web Design</a>
+        <a href="#features" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Mobile-First Development</a>
+        <a href="#features" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Booking Integration</a>
+        <a href="#features" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Local SEO</a>
+        <a href="#features" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">E-Commerce & Gift Cards</a>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:16px">Contact</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="mailto:hello@synergiax.in" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">
+          <span class="msym" aria-hidden="true" style="font-size:16px">mail</span> hello@synergiax.in
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">
+          <span class="msym" aria-hidden="true" style="font-size:16px">photo_camera</span> @synergiax
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">
+          <span class="msym" aria-hidden="true" style="font-size:16px">work</span> LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:48px auto 0;padding-top:32px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+    <p style="color:rgba(255,255,255,.42);font-size:12px">© 2026 SynergiaX. All rights reserved.</p>
+    <p style="color:rgba(255,255,255,.42);font-size:12px">Designed &amp; built in Pune, India 🇮🇳</p>
+  </div>
+</section>
+
+<!-- SX modules (vanilla JS, no frameworks). Load order: core first, bindings last. -->
+<script src="./js/sx-core.js"></script>
+<script src="./js/sx-validation.js"></script>
+<script src="./js/sx-pricing.js"></script>
+<script src="./js/sx-faq.js"></script>
+<script src="./js/sx-nav.js"></script>
+<script src="./js/sx-motion.js"></script>
+<script src="./js/sx-cinematic.js"></script>
+<script src="./js/sx-fx.js"></script>
+<script src="./js/sx-interactions.js"></script>
+<script src="./js/sx-bindings.js"></script>
+</body>
+</html>
