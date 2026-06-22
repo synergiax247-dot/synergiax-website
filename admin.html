@@ -166,6 +166,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,20,30,.96);border:1px solid var(--border2);color:#fff;padding:12px 20px;border-radius:12px;font-size:13.5px;opacity:0;pointer-events:none;transition:.3s;z-index:200}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+.chartbox{position:relative;width:100%}
+.chartbox canvas{position:absolute!important;inset:0;width:100%!important;height:100%!important}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
 
@@ -243,11 +245,11 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px}
             <div class="panel__h"><span class="msym">show_chart</span><h2>Enquiries over time</h2>
               <div class="panel__tools"><div class="seg" data-range><button data-r="8" class="is-active">8 wks</button><button data-r="12">12 wks</button><button data-r="26">26 wks</button></div></div>
             </div>
-            <canvas data-chart-time height="120"></canvas>
+            <div class="chartbox" style="height:280px"><canvas data-chart-time></canvas></div>
           </div>
           <div class="panel">
             <div class="panel__h"><span class="msym">donut_small</span><h2>By business type</h2></div>
-            <canvas data-chart-type height="120"></canvas>
+            <div class="chartbox" style="height:280px"><canvas data-chart-type></canvas></div>
           </div>
         </div>
         <div class="panel">
@@ -259,13 +261,13 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px}
       <!-- VIEW: ANALYTICS -->
       <section class="view" data-view="analytics">
         <div class="grid3">
-          <div class="panel"><div class="panel__h"><span class="msym">flag</span><h2>Pipeline</h2></div><canvas data-chart-status height="160"></canvas></div>
-          <div class="panel"><div class="panel__h"><span class="msym">grade</span><h2>Rating spread</h2></div><canvas data-chart-rating height="160"></canvas></div>
+          <div class="panel"><div class="panel__h"><span class="msym">flag</span><h2>Pipeline</h2></div><div class="chartbox" style="height:240px"><canvas data-chart-status></canvas></div></div>
+          <div class="panel"><div class="panel__h"><span class="msym">grade</span><h2>Rating spread</h2></div><div class="chartbox" style="height:240px"><canvas data-chart-rating></canvas></div></div>
           <div class="panel"><div class="panel__h"><span class="msym">trending_up</span><h2>Conversion</h2></div><div data-funnel style="margin-top:6px"></div></div>
         </div>
         <div class="panel">
           <div class="panel__h"><span class="msym">bar_chart</span><h2>Enquiries by type &amp; status</h2></div>
-          <canvas data-chart-stack height="110"></canvas>
+          <div class="chartbox" style="height:300px"><canvas data-chart-stack></canvas></div>
         </div>
       </section>
 
@@ -342,6 +344,6 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px}
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-<script src="./js/sx-admin.js?v=2"></script>
+<script src="./js/sx-admin.js?v=3"></script>
 </body>
 </html>
