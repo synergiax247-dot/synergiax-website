@@ -82,34 +82,17 @@
       );
     }
 
-    if (typeof window.fetch !== "function") {
-      fail("Your browser can't submit this form. Please email hello@synergiax.in instead.");
+    if (!SX.db || typeof SX.db.addLead !== "function") {
+      fail("Submissions are temporarily unavailable. Please email hello@synergiax.in instead.");
       return;
     }
 
-    window
-      .fetch(API_BASE + "/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(buildPayload(values))
-      })
-      .then(function (res) {
-        return res
-          .json()
-          .catch(function () { return {}; })
-          .then(function (data) {
-            return { ok: res.ok, data: data || {} };
-          });
-      })
-      .then(function (result) {
-        if (result.ok && result.data && result.data.success) {
-          renderSuccess(container, values.name);
-        } else {
-          fail((result.data && result.data.error) || "Submission failed. Please try again.");
-        }
+    SX.db.addLead(buildPayload(values))
+      .then(function () {
+        renderSuccess(container, values.name);
       })
       .catch(function (err) {
-        fail((err && err.message) || "Network error. Please try again.");
+        fail("We couldn't submit your brief just now. Please email hello@synergiax.in or try again.");
       });
   }
 

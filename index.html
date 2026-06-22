@@ -6,6 +6,9 @@
 <title>SynergiaX | Premium Websites for Local Business</title>
 <meta name="description" content="SynergiaX designs and builds premium, high-converting websites for local businesses — gyms, salons, clinics, cafes, restaurants, and boutiques."/>
 <link rel="canonical" href="https://synergiax.web.app/"/>
+<link rel="icon" type="image/png" href="/favicon.png"/>
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 
 <!-- Open Graph (Facebook, LinkedIn, etc.) -->
 <meta property="og:type" content="website"/>
@@ -1317,6 +1320,10 @@ img{max-width:100%;height:auto}
 
 <!-- SX modules (vanilla JS, no frameworks). Load order: core first, bindings last. -->
 <script src="./js/sx-core.js"></script>
+<!-- Firebase (compat SDK via CDN) + client-side data layer -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="./js/sx-firebase.js"></script>
 <script src="./js/sx-validation.js"></script>
 <script src="./js/sx-pricing.js"></script>
 <script src="./js/sx-faq.js"></script>

@@ -117,8 +117,9 @@
     if (!track) return;
 
     var page = 0, perView = 3, auto = null;
+    var remote = null;
 
-    function all() { return loadUserReviews().concat(SEED); }
+    function all() { return (remote && remote.length ? remote : loadUserReviews()).concat(SEED); }
 
     function render() {
       var list = all();
@@ -218,16 +219,33 @@
         var name = nm && nm.value.trim(), biz = bz && bz.value.trim(), text = tx && tx.value.trim();
         if (!name || !biz || !text) { toast("Please fill in your name, business, and review."); return; }
         var review = { name: name, biz: biz, text: text, rating: rt ? parseInt(rt.value, 10) : 5 };
-        var user = loadUserReviews(); user.unshift(review); saveUserReviews(user);
         if (nm) nm.value = ""; if (bz) bz.value = ""; if (tx) tx.value = "";
         form.classList.remove("is-open");
-        page = 0; render();
-        toast("Thank you! Your review is now live.");
+        if (SX.db && SX.db.addReview) {
+          toast("Posting your review…");
+          SX.db.addReview(review)
+            .then(function () { return SX.db.listReviews(50); })
+            .then(function (list) { if (list) remote = list; page = 0; render(); toast("Thank you! Your review is now live."); })
+            .catch(function () {
+              var user = loadUserReviews(); user.unshift(review); saveUserReviews(user);
+              page = 0; render(); toast("Thank you! Your review has been saved.");
+            });
+        } else {
+          var user = loadUserReviews(); user.unshift(review); saveUserReviews(user);
+          page = 0; render();
+          toast("Thank you! Your review is now live.");
+        }
       });
     }
 
     render();
     startAuto();
+    // pull live reviews from Firestore (if available), then re-render
+    if (SX.db && typeof SX.db.listReviews === "function") {
+      SX.db.listReviews(50).then(function (list) {
+        if (list && list.length) { remote = list; page = 0; render(); }
+      }).catch(function () { /* offline / Firestore not ready → keep seed+local */ });
+    }
   }
 
   /* ── 3. toast ─────────────────────────────────────────────────────────────── */
