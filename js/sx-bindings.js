@@ -119,6 +119,15 @@
         return;
       }
 
+      // Require Google sign-in before sending the brief.
+      if (SX.auth && !SX.auth.user) {
+        setStatus(statusEl, "error", "Please sign in with Google to send your brief — it only takes a second.");
+        SX.auth.requireLogin().then(function (u) {
+          if (u) { clearStatus(statusEl); submitLead(form, btn, statusEl, container, result.values); }
+        }).catch(function () {});
+        return;
+      }
+
       submitLead(form, btn, statusEl, container, result.values);
     });
 

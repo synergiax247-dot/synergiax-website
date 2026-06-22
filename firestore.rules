@@ -1,47 +1,58 @@
 rules_version = '2';
 
 // SynergiaX Firestore security rules
-// - leads:   anyone may CREATE a valid enquiry; nobody may read/edit/delete
-//            from the client (you read them in the Firebase console / admin).
-// - reviews: anyone may READ (so they show on the site) and CREATE a valid
-//            review; nobody may edit/delete from the client.
+//  - Visitors must be SIGNED IN (Google) to submit a lead or a review.
+//  - Leads are private: only the business account (admin) can read them.
+//  - Reviews are public-read (shown on the site); only admin can edit/delete.
+//  - The admin is the business Google account, by verified email.
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    function isStr(v, max) {
-      return v is string && v.size() > 0 && v.size() <= max;
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'synergiax247@gmail.com'
+        && request.auth.token.email_verified == true;
     }
+    function isStr(v, max) { return v is string && v.size() > 0 && v.size() <= max; }
+    function optStr(v, max) { return v == null || (v is string && v.size() <= max); }
 
     match /leads/{id} {
-      allow read, update, delete: if false;
-      allow create: if
-        isStr(request.resource.data.name, 100) &&
-        isStr(request.resource.data.businessName, 120) &&
-        isStr(request.resource.data.email, 160) &&
-        request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$') &&
-        isStr(request.resource.data.phone, 30) &&
-        isStr(request.resource.data.brief, 4000) &&
-        request.resource.data.businessType is string &&
-        request.resource.data.status == 'new' &&
-        request.resource.data.source == 'website';
+      allow read:   if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && isStr(request.resource.data.name, 100)
+        && isStr(request.resource.data.businessName, 120)
+        && isStr(request.resource.data.email, 160)
+        && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && isStr(request.resource.data.phone, 30)
+        && isStr(request.resource.data.brief, 4000)
+        && request.resource.data.businessType is string
+        && request.resource.data.status == 'new'
+        && request.resource.data.source == 'website'
+        && optStr(request.resource.data.photoURL, 600)
+        && optStr(request.resource.data.accountEmail, 160);
     }
 
     match /reviews/{id} {
-      allow read: if true;
-      allow update, delete: if false;
-      allow create: if
-        isStr(request.resource.data.name, 80) &&
-        isStr(request.resource.data.biz, 120) &&
-        isStr(request.resource.data.text, 2000) &&
-        request.resource.data.rating is int &&
-        request.resource.data.rating >= 1 &&
-        request.resource.data.rating <= 5 &&
-        request.resource.data.approved == true;
+      allow read:   if true;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && isStr(request.resource.data.name, 80)
+        && isStr(request.resource.data.biz, 120)
+        && isStr(request.resource.data.text, 2000)
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.approved == true
+        && optStr(request.resource.data.photoURL, 600)
+        && optStr(request.resource.data.email, 160);
     }
 
-    // everything else denied
-    match /{document=**} {
-      allow read, write: if false;
-    }
+    match /{document=**} { allow read, write: if false; }
   }
 }

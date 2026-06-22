@@ -437,6 +437,22 @@ body{background:var(--sx-void);color:var(--sx-on-surface);overflow-x:hidden;-web
 #contact > *{position:relative;z-index:1}
 #contact [data-starfield]{position:absolute;inset:0;z-index:0}
 
+/* auth widget */
+.sx-auth{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sx-auth__signin{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(192,193,255,.28);color:#fff;border-radius:9999px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.sx-auth__signin:hover{background:rgba(192,193,255,.14);border-color:rgba(192,193,255,.55);transform:translateY(-1px)}
+.sx-auth__signin[hidden]{display:none}
+.sx-auth__user{display:flex;align-items:center;gap:10px}
+.sx-auth__user[hidden]{display:none}
+.sx-auth__avatar{width:32px;height:32px;border-radius:50%;background:rgba(192,193,255,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;background-size:cover;background-position:center;flex-shrink:0;border:1px solid rgba(255,255,255,.18)}
+.sx-auth__name{font-size:13px;color:rgba(255,255,255,.82);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sx-auth__signout{background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;display:inline-flex;padding:5px;border-radius:8px;transition:color .2s,background .2s}
+.sx-auth__signout:hover{color:#fff;background:rgba(255,255,255,.08)}
+.sx-auth__admin{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#0a0a14;background:linear-gradient(90deg,#7c7dff,#b07dff);padding:6px 13px;border-radius:9999px;text-decoration:none;font-weight:700;transition:filter .2s}
+.sx-auth__admin:hover{filter:brightness(1.12)}
+.sx-auth__admin[hidden]{display:none}
+@media (max-width:900px){.sx-auth__name{display:none}}
+
 /* project section starfield layering */
 #project [data-starfield]{position:absolute;inset:0;z-index:0}
 /* pricing: compress so the section fits one screen */
@@ -670,6 +686,21 @@ body{background:var(--sx-void);color:var(--sx-on-surface);overflow-x:hidden;-web
 
     <!-- Persistent CTA to the Lead_Capture_Form — visible in every state (Req 2.5) -->
     <a href="#project" class="btn-primary sx-nav__cta" data-target="project">Start a Project</a>
+
+    <!-- Auth widget (Google sign-in / account) -->
+    <div class="sx-auth" data-auth>
+      <button type="button" class="sx-auth__signin" data-auth-signin>
+        <span class="msym" aria-hidden="true" style="font-size:18px">login</span> Sign in
+      </button>
+      <div class="sx-auth__user" data-auth-user hidden>
+        <a href="/admin" class="sx-auth__admin" data-auth-admin hidden>Dashboard</a>
+        <span class="sx-auth__avatar" data-auth-avatar aria-hidden="true"></span>
+        <span class="sx-auth__name" data-auth-name></span>
+        <button type="button" class="sx-auth__signout" data-auth-signout aria-label="Sign out">
+          <span class="msym" aria-hidden="true" style="font-size:18px">logout</span>
+        </button>
+      </div>
+    </div>
 
     <!-- Mobile collapse control — shown below 768px, reveals [data-nav-links] (Req 2.6) -->
     <button type="button" class="sx-nav__toggle" data-nav-toggle
@@ -1323,7 +1354,9 @@ img{max-width:100%;height:auto}
 <!-- Firebase (compat SDK via CDN) + client-side data layer -->
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="./js/sx-firebase.js"></script>
+<script src="./js/sx-auth.js"></script>
 <script src="./js/sx-validation.js"></script>
 <script src="./js/sx-pricing.js"></script>
 <script src="./js/sx-faq.js"></script>

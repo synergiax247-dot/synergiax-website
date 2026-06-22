@@ -63,8 +63,11 @@
     catch (e) { return new Date().toISOString(); }
   }
 
+  function currentUser() { return (SX.auth && SX.auth.user) || null; }
+
   function addLead(data) {
     return ready.then(function () {
+      var u = currentUser();
       return db.collection("leads").add({
         name: String(data.name || ""),
         businessName: String(data.businessName || ""),
@@ -74,6 +77,9 @@
         brief: String(data.brief || ""),
         status: "new",
         source: "website",
+        uid: u ? u.uid : "",
+        accountEmail: u ? (u.email || "") : "",
+        photoURL: u ? (u.photoURL || "") : "",
         createdAt: ts()
       });
     }).then(function (ref) { return ref.id; });
@@ -81,14 +87,18 @@
 
   function addReview(data) {
     return ready.then(function () {
+      var u = currentUser();
       var rating = parseInt(data.rating, 10); if (isNaN(rating)) rating = 5;
       rating = Math.max(1, Math.min(5, rating));
       return db.collection("reviews").add({
-        name: String(data.name || ""),
+        name: String(data.name || (u && u.displayName) || ""),
         biz: String(data.biz || ""),
         text: String(data.text || ""),
         rating: rating,
         approved: true,
+        uid: u ? u.uid : "",
+        email: u ? (u.email || "") : "",
+        photoURL: u ? (u.photoURL || "") : "",
         createdAt: ts()
       });
     }).then(function (ref) { return ref.id; });
@@ -102,7 +112,7 @@
       var out = [];
       snap.forEach(function (doc) {
         var d = doc.data() || {};
-        out.push({ name: d.name, biz: d.biz, text: d.text, rating: d.rating });
+        out.push({ name: d.name, biz: d.biz, text: d.text, rating: d.rating, photoURL: d.photoURL || "" });
       });
       return out;
     });

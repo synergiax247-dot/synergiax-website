@@ -127,7 +127,10 @@
         return '<article class="sx-review-card" role="listitem">' +
           '<div class="sx-review-card__stars" aria-label="' + r.rating + ' out of 5">' + SX.escapeHtml(stars(r.rating)) + '</div>' +
           '<p class="sx-review-card__text">&ldquo;' + SX.escapeHtml(r.text) + '&rdquo;</p>' +
-          '<div class="sx-review-card__who"><div class="sx-review-card__avatar">' + SX.escapeHtml(initials(r.name)) + '</div>' +
+          '<div class="sx-review-card__who">' +
+          (r.photoURL
+            ? '<div class="sx-review-card__avatar" style="background-image:url(\'' + SX.escapeHtml(r.photoURL) + '\');background-size:cover;background-position:center"></div>'
+            : '<div class="sx-review-card__avatar">' + SX.escapeHtml(initials(r.name)) + '</div>') +
           '<div><div style="font-weight:600;font-size:14px;color:#fff">' + SX.escapeHtml(r.name) + '</div>' +
           '<div style="font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.04em">' + SX.escapeHtml(r.biz) + '</div></div></div>' +
           '</article>';
@@ -200,12 +203,20 @@
 
     // ── write-a-review form ──
     if (toggleBtn && form) {
+      var openReviewForm = function () {
+        if (!form.classList.contains("is-open")) form.classList.add("is-open");
+        var nm = SX.qs("[data-review-name]", form);
+        if (nm && !nm.value && SX.auth && SX.auth.user && SX.auth.user.displayName) nm.value = SX.auth.user.displayName;
+        if (nm) nm.focus();
+        form.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      };
       SX.on(toggleBtn, "click", function () {
-        var open = form.classList.toggle("is-open");
-        if (open) {
-          var nm = SX.qs("[data-review-name]", form); if (nm) nm.focus();
-          form.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+        if (SX.auth && !SX.auth.user) {
+          toast("Please sign in with Google to write a review.");
+          SX.auth.requireLogin().then(function (u) { if (u) openReviewForm(); }).catch(function () {});
+          return;
         }
+        openReviewForm();
       });
       var cancel = SX.qs("[data-review-cancel]", form);
       if (cancel) SX.on(cancel, "click", function () { form.classList.remove("is-open"); });
